@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.project</groupId>
+  <artifactId>HospitalManagement</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>HospitalManagement Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <!--  
+   ***** pom stands for Project Object Model *****
+  -->
+  
+  <!--  <properties>
+  		<spring.version>4.1.8.RELEASE</spring.version>	//5.2.0.RELEASE
+  </properties> -->
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  	
+  	<!-- <version>4.1.8.RELEASE</version> -->
+  	
+<!--     spring core -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId> 
+		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
+	</dependency>
+	
+<!-- 	spring mvc -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-webmvc</artifactId>	
+		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
+	</dependency>
+	
+<!-- 	jstl= jsp standard tag line  -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>  
+		<version>1.2</version>
+	</dependency>
+	
+<!-- 	hibernate core -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.4.8.Final</version>
+   </dependency>
+   	
+<!--    	to use spring and hibernate together	 -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-orm</artifactId>		
+		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->	
+	</dependency>
+   
+<!--    mysql DB connector -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>8.0.17</version>
+	</dependency>
+	
+<!-- 	jdbc pooling -->
+	<dependency>
+	    <groupId>com.mchange</groupId>
+	    <artifactId>c3p0</artifactId>
+	    <version>0.9.5.2</version>
+	</dependency>
+	
+<!-- 	to tell spring do commit and rollback using annotations -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-tx</artifactId>
+		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
+	</dependency> 
+	
+<!-- to store and read image file -->
+    <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+	<dependency>
+	    <groupId>commons-fileupload</groupId>
+	    <artifactId>commons-fileupload</artifactId>
+	    <version>1.4</version>
+	</dependency>
+	
+  </dependencies>
+    
+  <build>
+    <finalName>HospitalManagement</finalName>
+  </build>
+</project>

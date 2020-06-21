@@ -1,0 +1,11 @@
+com.project.controller
+com.project.controller.administrator
+com.project.controller.doctor
+com.project.controller.opd
+com.project.controller.receptionist
+com.project.dao
+com.project.dao.administrator
+com.project.dao.doctor
+com.project.dao.opd
+com.project.dao.receptionist
+com.project.entity

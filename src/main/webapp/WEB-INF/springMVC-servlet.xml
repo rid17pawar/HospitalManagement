@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	 ***filename : <servlet-name>-servlet.xml  ***
+	 *** it provides configuration for DispatcherServlet ***
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:ctx="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation=
+   "http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd 
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd"
+	
+	>
+	<ctx:annotation-config />
+	<ctx:component-scan base-package="com.project"></ctx:component-scan>
+	 
+<!-- to specify folder and extension for view files -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/view/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+		
+			
+<!-- Hibernate configuration started	 -->
+
+	<!-- properties for connection i.e. jdbc pooling ,datasource has database info -->
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+<!-- 		<property name="driverClass" value="com.mysql.jdbc.Driver" /> -->
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hospital" />
+		<property name="user" value="root" />
+		<property name="password" value="" />
+		
+		<property name="minPoolSize" value="3" />
+<!-- 		<property name="minPoolSize" value="5" />	min 5 connections -->
+		<property name="maxPoolSize" value="20" />
+		<property name="maxIdleTime" value="30000" />
+	</bean>
+	
+	<!-- sessionFactory object  -->
+	<!-- LocalSessionFactoryBean :gives object of sessionFactory -->
+	<!-- dataSource :is the above bean id which specifies jdbc pooling properties -->
+	<!-- packagesToScan :location (package) of all entity classes -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="com.project.entity" />	<!--it specifies path to scan for annotated entity classes or <property name=""> <value></value> </property> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>	<!-- language used to create queries for DB -->
+				<prop key="hibernate.show_sql">true</prop>	<!-- to see queries in console -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop> <!--  action to be performed with database on start-up -->
+			</props>
+		</property>
+	</bean>
+	
+	<!-- transactions will be done using annotations -->
+	<bean id="myTransactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="myTransactionManager" />
+	
+	<!--  -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<property name="maxUploadSize" value="20971520" /> <!-- 20mb -->
+	</bean>
+
+</beans>
