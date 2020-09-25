@@ -72,7 +72,7 @@
 	<dependency>
 	    <groupId>com.mchange</groupId>
 	    <artifactId>c3p0</artifactId>
-	    <version>0.9.5.4</version>
+	    <version>0.9.5.2</version>
 	</dependency>
 	
 <!-- 	to tell spring do commit and rollback using annotations -->
@@ -89,6 +89,14 @@
 	    <artifactId>commons-fileupload</artifactId>
 	    <version>1.4</version>
 	</dependency>
+	
+<!-- to encrypt password using Blowfish cipher hashing -->
+	<dependency>
+	    <groupId>org.mindrot</groupId>
+	    <artifactId>jbcrypt</artifactId>
+	    <version>0.3m</version>
+	</dependency>
+	
 	
   </dependencies>
     

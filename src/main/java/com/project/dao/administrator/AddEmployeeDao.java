@@ -5,6 +5,7 @@ import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +41,9 @@ public class AddEmployeeDao
 			String id=e.getEid();
 			String role=e.getRole();
 			String username=e.getEid();
-			String password=Long.toString(e.getAdharNo());
+
+			String password=BCrypt.hashpw(e.getAdharNo()+"", BCrypt.gensalt());
+			System.out.println("aadhar no= "+e.getAdharNo()+", generated hash= "+password);
 			Login l= new Login(id, role, username, password);
 			System.out.println(l);
 			session.save(l);

@@ -16,15 +16,15 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `patient`
+-- Table structure for table `employee`
 --
 
-DROP TABLE IF EXISTS `patient`;
+DROP TABLE IF EXISTS `employee`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `patient` (
-  `registrationDate` date DEFAULT NULL,
-  `pid` varchar(255) NOT NULL,
+CREATE TABLE `employee` (
+  `joiningDate` date DEFAULT NULL,
+  `eid` varchar(255) NOT NULL,
   `firstName` varchar(255) DEFAULT NULL,
   `middleName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) DEFAULT NULL,
@@ -38,24 +38,25 @@ CREATE TABLE `patient` (
   `city` varchar(255) DEFAULT NULL,
   `residentialAddress` varchar(255) DEFAULT NULL,
   `permanentAddress` varchar(255) DEFAULT NULL,
-  `bloodGroup` varchar(5) DEFAULT NULL,
-  `chronicDiseases` varchar(255) DEFAULT NULL,
-  `medicineAllergy` varchar(255) DEFAULT NULL,
-  `doctorId` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`pid`),
+  `role` varchar(255) DEFAULT NULL,
+  `qualification` varchar(255) DEFAULT NULL,
+  `specialization` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`eid`),
   UNIQUE KEY `emailID` (`emailID`),
-  UNIQUE KEY `adharNo` (`adharNo`)
+  UNIQUE KEY `adharNo` (`adharNo`),
+  UNIQUE KEY `mobileno` (`mobileno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `patient`
+-- Dumping data for table `employee`
 --
 
-LOCK TABLES `patient` WRITE;
-/*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES ('2020-06-21','P101','ashlesha','atul','narkhede','1990-04-12','female','ashlesha@gmail.com',1989478593,901238756123,'india','maharashtra','nashik','bhabha nagar','bhabha nagar','A+','none','bluemox','EMP101'),('2020-06-21','P102','ritu','yuvraj','mahajan','1990-05-02','female','ritu@gmail.com',9823475901,109478563215,'india','maharashtra','nashik','uttam nagar','uttam nagar','B-','diabetes','none','EMP103'),('2020-06-21','P103','siddhi','pramod','patil','1991-05-17','female','siddhi@gmail.com',9847382091,823947610019,'india','maharashtra','nashik','happy house apartment','happy house apartment','O+','none','none','EMP102'),('2020-06-21','P104','kusum','pawan','hiray','1973-06-28','female','kusum@gmail.com',9478301834,728001823453,'india','maharashtra','nashik','panchavati, nashik','panchavati, nashik','AB+','diabetes','none','EMP101');
-/*!40000 ALTER TABLE `patient` ENABLE KEYS */;
+LOCK TABLES `employee` WRITE;
+/*!40000 ALTER TABLE `employee` DISABLE KEYS */;
+INSERT INTO `employee` VALUES ('2020-06-21','EMP101','neelima','arun','pawar','1975-01-07','female','neelima@gmail.com',9013456893,143590034912,'india','maharashtra','nashik','vandana apartment, nashik','vandana apartment, nashik','doctor','mbbs, md','gynacologist',1),('2020-06-21','EMP102','arun','nanaji','pawar','1978-05-12','male','arun@gmail.com',9800274565,409285671923,'india','maharashtra','nashik','kamod nagar','kamod nagar','doctor','mbbs','none',0),('2020-06-21','EMP103','jagannath','yadav','suryawanshi','1990-03-07','male','jagannath@gmail.com',9028823456,103758492134,'india','maharashtra','aurangabad','gajanan banglow nashik','rushika niwas','doctor','ms','surgery',1),('2020-06-21','EMP104','riddhi','arun','pawar','1990-03-09','female','riddhi@gmail.com',9567834245,345600189345,'india','maharashtra','pune','damodar heights','damodar heights','administrator','be','computer science',1),('2020-06-21','EMP105','neha','ravindra','kothawade','1992-02-14','female','neha@gmail.com',1234567890,920385967123,'india','maharashtra','nashik','narayani bunglow','narayani bunglow','receptionist','be','computer',1);
+/*!40000 ALTER TABLE `employee` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -67,4 +68,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-21 20:30:39
+-- Dump completed on 2020-09-25 17:08:20

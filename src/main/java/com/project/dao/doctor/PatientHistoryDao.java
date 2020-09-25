@@ -33,7 +33,7 @@ public class PatientHistoryDao
 		System.out.println("in PatientHistoryDao-showHistoryList: got="+pid);
 		
 		Session session= sf.getCurrentSession();
-		Query q1= session.createQuery(" from Opd where pid= :i AND status= :s");	//HQL use classname not tablename
+		Query q1= session.createQuery(" from Opd where pid= :i AND status= :s ORDER BY opdId DESC");	//HQL use classname not tablename
 		q1.setParameter("i", pid);
 		q1.setParameter("s", 0);
 		
