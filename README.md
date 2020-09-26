@@ -32,6 +32,15 @@
   - Apache Tomcat
   
 
+## Issues that proposed system overcomes:
+   - It is digital system rather than paper based.
+   - Inappropriate data keeping (receptionist used register for patients entry and doctor used prescription pad).
+   - Time wastage in data storage and retrieval.
+   - Human error possibility in maintainance.
+   - Patient's were unable to understand prescriptions due to handwriting issue.
+   - Durability issues (data may lost if prescriptions goes missing).
+
+
 ## Features:
   1. Doctor module-
       - Seperate accounts for doctors
@@ -54,7 +63,7 @@
       - Remove/edit existing employee. 
       - Displays currently active employees in system.
       
+  4. Password Encryption-
+      - *_Bcrypt Encoding_* is used for password encryption. Bcrypt is a password hashing function designed by Niels Provos and David Mazières. It is based on the Blowfish cipher. Bcrypt uses adaptive hash algorithm to store password. BCrypt internally generates a random salt while encoding passwords and hence it is obvious to get different encoded results for the same string. But one common thing is that everytime it generates a String of length 60.
 
-
-      
   
