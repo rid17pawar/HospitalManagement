@@ -12,6 +12,9 @@
 
 ## Technologies Used-
 
+![TechStack](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/techStack.png)
+
+
 ### Front end Technologies:
   1. HTML
   2. CSS
@@ -65,5 +68,41 @@
       
   4. Password Encryption-
       - *_Bcrypt Encoding_* is used for password encryption. Bcrypt is a password hashing function designed by Niels Provos and David Mazières. It is based on the Blowfish cipher. Bcrypt uses adaptive hash algorithm to store password. BCrypt internally generates a random salt while encoding passwords and hence it is obvious to get different encoded results for the same string. But one common thing is that everytime it generates a String of length 60.
+
+
+## Snapshots:
+
+1. Homepage
+
+![Homepage](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/loginpg.png)
+
+
+2. Login page
+
+![Login page](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/loginpg.png)
+
+
+3. Administrator Dashboard
+
+![Administrator Dashboard](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/adminAll.png)
+
+
+4. Doctor Dashboard
+
+![Doctor Dashboard - patient observation](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/doctorObservation.png)
+
+
+![Doctor Dashboard - patient prescription](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/doctorPrescription.png)
+
+
+5. Receptionist Dashboard
+
+![Receptionist Dashboard search patient](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/receptionistSearch.png)
+
+![Receptionist Dashboard add patient to opd](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/receptionistAdd.png)
+
+
+### Thank You !
+
 
   
