@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 
 @Component
@@ -17,10 +18,13 @@ public class EmployeeDetailsDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public Employee show(String eid)
 	{
-		System.out.println("in EmployeeDetailsDao-show: got= "+eid);
+		infoLog.logActivities("in EmployeeDetailsDao-show: got= "+eid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Employee where eid= :id");
@@ -29,12 +33,12 @@ public class EmployeeDetailsDao
 		try 
 		{
 			Employee temp= (Employee) q1.uniqueResult();
-			System.out.println("in EmployeeDetailsDao-show: found= "+temp);
+			infoLog.logActivities("in EmployeeDetailsDao-show: found= "+temp);
 			return temp;
 		}
 		catch(Exception e)
 		{
-			System.out.println("in EmployeeDetailsDao-show: "+e);
+			infoLog.logActivities("in EmployeeDetailsDao-show: "+e);
 			return null;
 		}
 	}

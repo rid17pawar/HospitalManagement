@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.project.dao.LoginDao" 
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
-   	
+   	 <%! 
+	LoginDao infoLog= new LoginDao();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,12 +126,12 @@ body {
 			 		<%	
 					try{
 						String status=(request.getAttribute("status")).toString();
-						System.out.println(status);
+						infoLog.logActivities(status);
 						if(status.equals("false"))
 						{  
 					%>	<div class="text-danger"><b>Unable to fetch unique patient data..Verify your Credentials..</b></div>
 					<%  }
-						}catch(Exception e){System.out.println(e);}
+						}catch(Exception e){infoLog.logActivities(""+e);}
 					%>
 			
 			<div class="card bg-light border-primary mb-3" >
@@ -148,7 +150,7 @@ body {
 						 	required="required" autocomplete="off" maxlength="20">
 						 </div>
 						 <div style="text-align: center;">
-				    	<button type="submit" class="btn btn-primary">Submit</button>
+				    	<button type="submit" class="btn btn-primary">Search</button>
 				    	</div>
 				    </form>
 			    </p>
@@ -161,7 +163,7 @@ body {
 			    <p class="card-text">
 			    	<form action="searchPatientById.html" method="post" >
 						 <div class="form-group">
-						 	<label>Employee Id</label>
+						 	<label>Id</label>
 						 	<input type="text" class="form-control" id="exampleInputEmail1" name="id" placeholder="Pxxx"
 						 	required="required" autocomplete="off" maxlength="10">
 						 </div>

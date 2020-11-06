@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.receptionist.AddPatientDao;
 import com.project.dao.receptionist.EditPatientDao;
 import com.project.dao.receptionist.PatientDetailsDao;
@@ -29,18 +30,20 @@ public class EditPatientController
 	AddPatientDao dao4;
 	@Autowired
 	PatientPrescriptionDao dao5;
+	@Autowired
+	LoginDao infoLog;
 	
 	@RequestMapping(value="/editPatientView.html", method=RequestMethod.POST)
 	public ModelAndView edit(@RequestParam("pid")String pid)
 	{
 		try {
-			System.out.println("in EditPatientController-edit: got= "+pid);
+			infoLog.logActivities("in EditPatientController-edit: got= "+pid);
 			
 			Patient temp=  dao1.show(pid);
-			System.out.println("returned to EditPatientController-edit: got= "+temp);
+			infoLog.logActivities("returned to EditPatientController-edit: got= "+temp);
 			
 			String doctorname=dao3.searchDoctorAssigned(temp.getDoctorId());
-			System.out.println("returned to EditPatientController-edit: got= "+doctorname);
+			infoLog.logActivities("returned to EditPatientController-edit: got= "+doctorname);
 			
 				if(!(temp.getPid().equals(null)) && !(doctorname.equals(null)))
 				{
@@ -57,7 +60,7 @@ public class EditPatientController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in EditPatientController-edit: "+e);
+				infoLog.logActivities("in EditPatientController-edit: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);
@@ -72,10 +75,10 @@ public class EditPatientController
 		try {
 			Name n1=new Name(firstName,middleName,lastName);
 			Address a1= new Address(residentialAddress, permanentAddress);
-			System.out.println("in EditPatientController-edit: got= "+pid+" "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
+			infoLog.logActivities("in EditPatientController-edit: got= "+pid+" "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
 			
 			int i=dao2.edit(pid,n1,birthdate,gender,email,mobileNo,adharNo,country,state,city,a1,bloodGroup,chronicDiseases,medicineAllergy,doctorId);
-			System.out.println("returned to EditPatientController-edit: got= "+i);
+			infoLog.logActivities("returned to EditPatientController-edit: got= "+i);
 			
 				if(i==1)
 				{
@@ -89,7 +92,7 @@ public class EditPatientController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in EditPatientController-edit: "+e);
+				infoLog.logActivities("in EditPatientController-edit: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);

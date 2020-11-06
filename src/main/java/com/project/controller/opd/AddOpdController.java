@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.opd.AddOpdDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
 import com.project.entity.Opd;
@@ -20,22 +21,25 @@ public class AddOpdController
 	@Autowired
 	PatientPrescriptionDao dao1;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping(value = "/addOpd.html", method =RequestMethod.POST)
 	public ModelAndView add(@RequestParam("pid")String pid)
 	{
 		try
 		{
-			System.out.println("in AddOpdController-add: got= "+pid);
+			infoLog.logActivities("in AddOpdController-add: got= "+pid);
 			
 			String doctorid=dao.getDoctorId(pid);
-			System.out.println("returned to AddOpdController-add: got= "+doctorid);
+			infoLog.logActivities("returned to AddOpdController-add: got= "+doctorid);
 			
 			if(! doctorid.equals(null))
 			{
 				Opd q1= new Opd(pid, doctorid, Opd.PENDING);
 				
 				int b=dao.add(q1);
-				System.out.println("returned to AddOpdController-add: got= "+b);
+				infoLog.logActivities("returned to AddOpdController-add: got= "+b);
 				
 				if(b==1) 
 				{
@@ -46,7 +50,7 @@ public class AddOpdController
 				}
 				else if(b==2)
 				{
-					System.out.println("in AddOpdController-add: ");
+					infoLog.logActivities("in AddOpdController-add: ");
 					ModelAndView mv= new ModelAndView();
 					mv.setViewName("failure");
 					mv.addObject("error","<b>patient is aldready added in OPD queue</b>");
@@ -54,7 +58,7 @@ public class AddOpdController
 				}
 				else if(b==3)
 				{
-					System.out.println("in AddOpdController-add: ");
+					infoLog.logActivities("in AddOpdController-add: ");
 					ModelAndView mv= new ModelAndView();
 					mv.setViewName("failure");
 					mv.addObject("error","<b>Your assigned doctor is not available...plz choose another doctor and then try again</b>");
@@ -70,7 +74,7 @@ public class AddOpdController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in AddOpdController-add: "+e);
+			infoLog.logActivities("in AddOpdController-add: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);

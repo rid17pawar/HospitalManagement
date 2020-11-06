@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.doctor.PatientHistoryDao;
 import com.project.dao.opd.DeleteOpdDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
@@ -29,11 +30,14 @@ public class PatientPrescriptionController
 	@Autowired
 	PatientHistoryDao dao2;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping(value="/prescriptionQueueView.html")
 	public ModelAndView prescriptionQueue()
 	{	
 		try {
-			System.out.println("in PatientPrescriptionController-prescriptionQueue:");
+			infoLog.logActivities("in PatientPrescriptionController-prescriptionQueue:");
 			
 			List<String[]> prescriptionList= dao.getPrescriptionList();
 			
@@ -50,7 +54,7 @@ public class PatientPrescriptionController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in PatientPrescriptionController-prescriptionQueue: "+e);
+			infoLog.logActivities("in PatientPrescriptionController-prescriptionQueue: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);
@@ -63,14 +67,14 @@ public class PatientPrescriptionController
 	{	
 		try 
 		{
-			System.out.println("in PatientPrescriptionController-print: got="+pid+" "+opdid);
+			infoLog.logActivities("in PatientPrescriptionController-print: got="+pid+" "+opdid);
 			int opdId=Integer.parseInt(opdid);
 			
 			String name=dao.getPatientName(pid);
-			System.out.println("returned to PatientPrescriptionController-print: got="+name);
+			infoLog.logActivities("returned to PatientPrescriptionController-print: got="+name);
 			
 			OpdDetails data=dao2.showHistory(opdId);
-			System.out.println("returned to PatientPrescriptionController-print: got="+data);
+			infoLog.logActivities("returned to PatientPrescriptionController-print: got="+data);
 			
 			if( (! name.equals(null)) && (data.getOpdid()!=0 ) )
 			{
@@ -85,7 +89,7 @@ public class PatientPrescriptionController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in PatientPrescriptionController-print: "+e);
+			infoLog.logActivities("in PatientPrescriptionController-print: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);
@@ -99,10 +103,10 @@ public class PatientPrescriptionController
 	{
 		try 
 		{
-			System.out.println("in PatientPrescriptionController-delete: got="+pid);
+			infoLog.logActivities("in PatientPrescriptionController-delete: got="+pid);
 			
 			int i=dao1.prescriptionPrintDone(pid);
-			System.out.println("returned to PatientPrescriptionController-delete: got="+i);
+			infoLog.logActivities("returned to PatientPrescriptionController-delete: got="+i);
 			
 			if(i==1)
 			{
@@ -126,7 +130,7 @@ public class PatientPrescriptionController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in PatientPrescriptionController-delete: "+e);
+			infoLog.logActivities("in PatientPrescriptionController-delete: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);

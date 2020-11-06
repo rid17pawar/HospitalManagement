@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.opd.OpdDetailsDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
 import com.project.entity._OpdRecord;
@@ -21,17 +22,20 @@ public class OpdDetailsController
 	@Autowired
 	PatientPrescriptionDao dao1;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping(value="/opdQueueView.html" )
 	public ModelAndView view()
 	{
 		try {
-			System.out.println("in OpdDetailsController-view:");
+			infoLog.logActivities("in OpdDetailsController-view:");
 			
 			ArrayList<_OpdRecord> opdQ= dao.opdQueue();
-			System.out.println("returned to OpdDetailsController-view: got= ");
+			infoLog.logActivities("returned to OpdDetailsController-view: got= ");
 			for(_OpdRecord r: opdQ)
 			{
-				System.out.println(r);
+				infoLog.logActivities(""+r);
 			}
 			
 				if(! opdQ.equals(null))
@@ -47,7 +51,7 @@ public class OpdDetailsController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in OpdDetailsController-view: "+e);
+				infoLog.logActivities("in OpdDetailsController-view: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);

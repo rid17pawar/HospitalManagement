@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 import com.project.entity.Login;
 
@@ -16,6 +17,9 @@ public class SearchEmployeeDao
 {
 	@Autowired
 	private SessionFactory sf;	//hibernate configuration in springMVC-servlet.xml file
+	
+	@Autowired
+	LoginDao infoLog;
 	
 	//to manage transaction by itself
 	@Transactional
@@ -30,15 +34,15 @@ public class SearchEmployeeDao
 		try 
 		{
 				Employee temp= (Employee) q1.uniqueResult();
-				System.out.println(temp);
+				infoLog.logActivities(""+temp);
 		
 				if(temp.getEid()!=null)
-				System.out.println("employee found");
+					infoLog.logActivities("employee found");
 				return temp;
 			}
 			catch(Exception e)
 			{ 
-			  System.out.println("error in finding employee records "+e);
+				infoLog.logActivities("error in finding employee records "+e);
 			  return null;
 			}
 			
@@ -54,15 +58,15 @@ public class SearchEmployeeDao
 			try 
 			{
 				Employee temp= (Employee) q1.uniqueResult();
-				System.out.println(temp);
+				infoLog.logActivities(""+temp);
 		
 				if(temp.getEid()!=null)
-				System.out.println("employee found");
+					infoLog.logActivities("employee found");
 				return temp;
 			}
 			catch(Exception e)
 			{ 
-			  System.out.println("error in finding employee records "+e);
+				infoLog.logActivities("error in finding employee records "+e);
 			  return null;
 			}
 	}
@@ -77,15 +81,15 @@ public class SearchEmployeeDao
 		    try 
 		    {
 				Employee temp= (Employee) q1.uniqueResult();
-				System.out.println(temp);
+				infoLog.logActivities(""+temp);
 		
 				if(temp.getEid()!=null)
-				System.out.println("employee found");
+					infoLog.logActivities("employee found");
 				return temp;
 			}
 			catch(Exception e)
 			{ 
-			  System.out.println("error in finding employee records "+e);
+				infoLog.logActivities("error in finding employee records "+e);
 			  return null;
 			}
 	}
@@ -100,15 +104,15 @@ public class SearchEmployeeDao
 		    try 
 		    {
 				Employee temp= (Employee) q1.uniqueResult();
-				System.out.println(temp);
+				infoLog.logActivities(""+temp);
 		
 				if(temp.getEid()!=null)
-				System.out.println("employee found");
+					infoLog.logActivities("employee found");
 				return temp;
 			}
 			catch(Exception e)
 			{ 
-			  System.out.println("error in finding employee records "+e);
+				infoLog.logActivities("error in finding employee records "+e);
 			  return null;
 			}
 	}

@@ -12,6 +12,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.project.dao.LoginDao;
 import com.project.dao.receptionist.PatientDetailsDao;
 import com.project.dao.receptionist.SearchPatientDao;
 import com.project.entity.Employee;
@@ -27,10 +29,13 @@ public class PatientHistoryDao
 	@Autowired
 	SearchPatientDao dao2;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public List<String[]> showHistoryList(String pid) 
 	{
-		System.out.println("in PatientHistoryDao-showHistoryList: got="+pid);
+		infoLog.logActivities("in PatientHistoryDao-showHistoryList: got="+pid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1= session.createQuery(" from Opd where pid= :i AND status= :s ORDER BY opdId DESC");	//HQL use classname not tablename
@@ -57,7 +62,7 @@ public class PatientHistoryDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in PatientHistoryDao-showHistoryList: "+e);
+			infoLog.logActivities("in PatientHistoryDao-showHistoryList: "+e);
 			return null;
 		}
 
@@ -66,7 +71,7 @@ public class PatientHistoryDao
 	@Transactional
 	public OpdDetails showHistory(int opdid) 
 	{
-		System.out.println("in PatientHistoryDao-showHistory: got= "+opdid);
+		infoLog.logActivities("in PatientHistoryDao-showHistory: got= "+opdid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1= session.createQuery(" from OpdDetails where opdid= :i");	//HQL use classname not tablename
@@ -78,7 +83,7 @@ public class PatientHistoryDao
 			}
 			catch(Exception e)
 			{ 
-				System.out.println("in PatientHistoryDao-showHistory:"+e);
+				infoLog.logActivities("in PatientHistoryDao-showHistory:"+e);
 			    return null;
 			}
 	    

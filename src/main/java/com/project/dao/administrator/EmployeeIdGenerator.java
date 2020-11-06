@@ -9,9 +9,15 @@ import java.sql.Statement;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.project.dao.LoginDao;
 
 public class EmployeeIdGenerator implements IdentifierGenerator{
 
+	@Autowired
+	LoginDao infoLog;
+	
 	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException 
     {
         String prefix = "EMP";
@@ -25,11 +31,11 @@ public class EmployeeIdGenerator implements IdentifierGenerator{
             {
                 Integer id=rs.getInt(1)+101;	
                 String generatedId = prefix + id.toString();
-                System.out.println("Generated Id: " + generatedId);
+                infoLog.logActivities("Generated Id: " + generatedId);
                 return generatedId;
             }
         } catch (SQLException e) 
-        {	System.out.println(e); }
+        {	infoLog.logActivities(""+e); }
 
         return null;
        }

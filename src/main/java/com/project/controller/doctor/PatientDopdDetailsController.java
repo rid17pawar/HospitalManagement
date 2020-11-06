@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.project.dao.LoginDao;
 import com.project.dao.receptionist.SearchPatientDao;
 import com.project.entity.Patient;
 
@@ -18,16 +20,19 @@ public class PatientDopdDetailsController
 	@Autowired
 	SearchPatientDao dao;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping(value="/viewDopdPatient1.html", method = RequestMethod.POST)
 	public ModelAndView view(@RequestParam("pid")String pid, HttpServletRequest request)
 	{
 		try {
-				System.out.println("in PatientDopdDetailsController-view: got="+pid);
+			infoLog.logActivities("in PatientDopdDetailsController-view: got="+pid);
 				Patient p1=dao.searchId(pid);
-				System.out.println("returned to PatientDopdDetailsController-view: got= "+p1);
+				infoLog.logActivities("returned to PatientDopdDetailsController-view: got= "+p1);
 			
 				String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
-				System.out.println("returned to PatientDopdDetailsController-view: got= "+doctorAssigned);
+				infoLog.logActivities("returned to PatientDopdDetailsController-view: got= "+doctorAssigned);
 					    
 				if(!(p1.getPid().equals(null)) && !(doctorAssigned.equals(null)))
 				{
@@ -46,7 +51,7 @@ public class PatientDopdDetailsController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in PatientDopdDetailsController-view: "+e);
+				infoLog.logActivities("in PatientDopdDetailsController-view: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);
@@ -59,15 +64,15 @@ public class PatientDopdDetailsController
 	{
 		try 
 		{
-			System.out.println("in PatientDopdDetailsController-viewData: ");
+			infoLog.logActivities("in PatientDopdDetailsController-viewData: ");
 			HttpSession session=request.getSession();
 			String pid=(String)session.getAttribute("currentPatientId");
 	
 			Patient p1=dao.searchId(pid);
-			System.out.println("returned to PatientDopdDetailsController-viewData: got="+p1);
+			infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+p1);
 			
 			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
-			System.out.println("returned to PatientDopdDetailsController-viewData: got="+doctorAssigned);
+			infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+doctorAssigned);
 		    
 				if(!(p1.getPid().equals(null)) && !(doctorAssigned.equals(null)))
 				{
@@ -82,7 +87,7 @@ public class PatientDopdDetailsController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in PatientDopdDetailsController-viewData: "+e);
+				infoLog.logActivities("in PatientDopdDetailsController-viewData: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);

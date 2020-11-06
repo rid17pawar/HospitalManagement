@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.receptionist.AddPatientDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
 import com.project.entity.Address;
@@ -24,15 +25,18 @@ public class AddPatientController
 	@Autowired
 	PatientPrescriptionDao dao1;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping(value="/addPatientView.html")
 	public ModelAndView view()
 	{	
 		try {
 			List<String[]> doctors= dao.getDoctors();
-			System.out.println("in AddPatientController-view:got= ");
+			infoLog.logActivities("in AddPatientController-view:got= ");
 			for(String[] str: doctors)
 			{
-				System.out.print(str[0]+", "+str[1]+", "+str[2]+", "+str[3]+", ");
+				infoLog.logActivities(str[0]+", "+str[1]+", "+str[2]+", "+str[3]+", ");
 			}
 				if(! doctors.equals(null))
 				{
@@ -48,7 +52,7 @@ public class AddPatientController
 			 }
 			catch(Exception e)
 			{
-				System.out.println("in AddPatientController-view: "+e);	
+				infoLog.logActivities("in AddPatientController-view: "+e);	
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);
@@ -62,11 +66,11 @@ public class AddPatientController
 		try{
 			Name n1= new Name(firstName, middleName, lastName);
 			Address a1= new Address(residentialAddress,permanentAddress);
-			System.out.println("in AddPatientController-add: got= "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
+			infoLog.logActivities("in AddPatientController-add: got= "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
 	       		
 			Patient p1= new Patient(n1,birthdate,gender,email,mobileNo,adharNo,country,state,city,a1,bloodGroup,chronicDiseases,medicineAllergy,doctorId);
 			boolean b=dao.add(p1);
-			System.out.println("returned to AddPatientController-add: got= "+b);
+			infoLog.logActivities("returned to AddPatientController-add: got= "+b);
 				if(b)
 				{
 					ModelAndView mv= new ModelAndView();
@@ -79,7 +83,7 @@ public class AddPatientController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in AddPatientController-add: "+e);
+				infoLog.logActivities("in AddPatientController-add: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);

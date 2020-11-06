@@ -15,24 +15,27 @@ public class PersonalInfoDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public Employee info(String id)
 	{
 		try 
 		{
-			System.out.println("in PersonalInfoDao-info: got= "+id);
+			infoLog.logActivities("in PersonalInfoDao-info: got= "+id);
 			
 			Session session= sf.getCurrentSession();
 			Query q1=session.createQuery("from Employee where eid= :id");
 			q1.setParameter("id", id);
 		
 			Employee temp= (Employee) q1.uniqueResult();
-			System.out.println("in PersonalInfoDao-info: found= "+temp);
+			infoLog.logActivities("in PersonalInfoDao-info: found= "+temp);
 			return temp;
 		}
 		catch(Exception e)
 		{
-			System.out.println("in PersonalInfoDao-info: "+e);
+			infoLog.logActivities("in PersonalInfoDao-info: "+e);
 			return null;
 		}
 

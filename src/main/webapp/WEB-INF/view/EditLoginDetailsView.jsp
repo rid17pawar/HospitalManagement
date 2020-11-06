@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.project.dao.LoginDao" 
     pageEncoding="ISO-8859-1"%>
-    
+    <%! 
+	LoginDao infoLog= new LoginDao();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,12 +33,12 @@
 						<%	
 						try{
 							String status=(String)request.getAttribute("status");
-							System.out.println("editlogindetailsview: "+status);
+							infoLog.logActivities("editlogindetailsview: "+status);
 								if(status.equals("false"))
 								{  out.print("No such account exists. Please insert valid credentials");  }
 							}
 						catch(Exception e)
-							{System.out.println("editlogindetailsview: "+e);}
+							{infoLog.logActivities("editlogindetailsview: "+e);}
 						%>
 					</div>
 						 <div class="form-group">

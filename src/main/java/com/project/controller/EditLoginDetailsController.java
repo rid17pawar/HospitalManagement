@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.project.dao.EditLoginDetailsDao;
 import com.project.entity.Login;
+import com.project.dao.LoginDao;
 
 
 @Controller
@@ -19,6 +20,9 @@ public class EditLoginDetailsController
 {
 	@Autowired
 	EditLoginDetailsDao dao1;
+	
+	@Autowired
+	LoginDao infoLog;
 	 
 	@RequestMapping(value="/editView.html")
 	public ModelAndView editLoginView()
@@ -32,7 +36,7 @@ public class EditLoginDetailsController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in EditLoginDetailsController-editLoginView: "+e);
+			infoLog.logActivities("in EditLoginDetailsController-editLoginView: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);
@@ -44,12 +48,12 @@ public class EditLoginDetailsController
 	public ModelAndView editLoginView(@RequestParam("username")String username,@RequestParam("password")String password, HttpServletRequest request)
 	{
 		try {
-			System.out.println("in EditLoginDetailsController-editLoginView: got="+username+" "+password);
+			infoLog.logActivities("in EditLoginDetailsController-editLoginView: got="+username+" "+password);
 			 HttpSession session= request.getSession();
 			 Login l=(Login)session.getAttribute("userInfo");
 			 
 			 int i=dao1.editLoginInfo(l.getId(),username,password);
-			 System.out.println("returned to EditLoginDetailsController-editLoginView: got= "+i);
+			 infoLog.logActivities("returned to EditLoginDetailsController-editLoginView: got= "+i);
 			
 				if(i==1)
 				{	//setting session
@@ -67,7 +71,7 @@ public class EditLoginDetailsController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in EditLoginDetailsController-editLoginView: "+e);	
+				infoLog.logActivities("in EditLoginDetailsController-editLoginView: "+e);	
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("EditLoginDetailsView");
 				mv.addObject("status", "false");

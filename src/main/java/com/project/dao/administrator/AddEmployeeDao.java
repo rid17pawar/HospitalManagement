@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 import com.project.entity.IdGenerate;
 import com.project.entity.Login;
@@ -19,6 +20,9 @@ public class AddEmployeeDao
 {
 	@Autowired
 	private SessionFactory sf;	//hibernate configuration in springMVC-servlet.xml file
+	
+	@Autowired
+	LoginDao infoLog;
 	
 	//to manage transaction by itself
 	@Transactional
@@ -32,7 +36,7 @@ public class AddEmployeeDao
 			
 			e.setStatus(1);
 			
-			System.out.println("in AddEmployeeDao-add: got= "+e);
+			infoLog.logActivities("in AddEmployeeDao-add: got= "+e);
 			
 			Session session= sf.getCurrentSession();
 			session.save(e);
@@ -43,9 +47,9 @@ public class AddEmployeeDao
 			String username=e.getEid();
 
 			String password=BCrypt.hashpw(e.getAdharNo()+"", BCrypt.gensalt());
-			System.out.println("aadhar no= "+e.getAdharNo()+", generated hash= "+password);
+			infoLog.logActivities("aadhar no= "+e.getAdharNo()+", generated hash= "+password);
 			Login l= new Login(id, role, username, password);
-			System.out.println(l);
+			infoLog.logActivities(""+l);
 			session.save(l);
 			
 			//incrementing eid of idgenerate table contents
@@ -56,12 +60,12 @@ public class AddEmployeeDao
 			q1=session.createQuery("update IdGenerate set eid= :i");
 			q1.setParameter("i", eid);
 			int res= q1.executeUpdate();
-			System.out.println("incremented eid "+res);
+			infoLog.logActivities("incremented eid "+res);
 			return true;
 		}
 		catch(Exception ex)
 		{
-			System.out.println("in AddEmployeeDao-add: "+ex);
+			infoLog.logActivities("in AddEmployeeDao-add: "+ex);
 			return false;
 		}
 	}

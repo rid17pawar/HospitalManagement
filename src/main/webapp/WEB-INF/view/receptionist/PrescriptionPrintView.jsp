@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.project.dao.LoginDao" 
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
+     <%! 
+	LoginDao infoLog= new LoginDao();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +84,7 @@
 				 	}
 				 	catch(Exception e)
 				 	{
-				 		System.out.println(e);
+				 		infoLog.logActivities(""+e);
 				 		for(int i=1; i<temp1.length; i++)
 						{
 				 		out.print("- "+temp1[i]+"<br>");

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.opd.DeleteOpdDao;
 import com.project.dao.opd.OpdDetailsDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
@@ -20,15 +21,17 @@ public class DeleteOpdController
 	OpdDetailsDao dao2;
 	@Autowired
 	PatientPrescriptionDao dao3;
+	@Autowired
+	LoginDao infoLog;
 	
 	@RequestMapping(value = "/deleteOpd.html", method = RequestMethod.POST)
 	public ModelAndView delete(@RequestParam("pid")String pid)
 	{
 		try{
-			System.out.println("in DeleteOpdController-delete: got= "+pid);
+			infoLog.logActivities("in DeleteOpdController-delete: got= "+pid);
 			
 			int i=dao1.delete(pid);
-			System.out.println("returned to DeleteOpdController-delete: got= "+i);
+			infoLog.logActivities("returned to DeleteOpdController-delete: got= "+i);
 			
 				if(i==1)
 				{
@@ -43,7 +46,7 @@ public class DeleteOpdController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in DeleteOpdController-delete: "+e);
+				infoLog.logActivities("in DeleteOpdController-delete: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);

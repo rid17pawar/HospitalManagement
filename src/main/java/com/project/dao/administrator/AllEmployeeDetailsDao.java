@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 import com.project.entity.Login;
 
@@ -17,11 +18,14 @@ public class AllEmployeeDetailsDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public List<Employee> getAllEmployees()
 	{
 		try {
-			System.out.println("in AllEmployeeDetailsDao-getAllEmployees: ");
+			infoLog.logActivities("in AllEmployeeDetailsDao-getAllEmployees: ");
 			Session session= sf.getCurrentSession();
 			Query q1= session.createQuery("from Employee where status=:s");	//HQL use classname not tablename
 			q1.setParameter("s", 1);
@@ -31,7 +35,7 @@ public class AllEmployeeDetailsDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in AllEmployeeDetailsDao-getAllEmployees: "+e);
+			infoLog.logActivities("in AllEmployeeDetailsDao-getAllEmployees: "+e);
 			return null;
 		}
 	}

@@ -16,13 +16,16 @@ public class LoginDao
 	@Autowired
 	private SessionFactory sf;	//hibernate configuration in springMVC-servlet.xml file
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	//to manage transaction by itself
 	@Transactional
 	public String validate(Login l)
 	{
 		try 
 		{
-			System.out.println("in logindao-validate:got= "+l);
+			infoLog.logActivities("in logindao-validate:got= "+l);
 							
 			Session session= sf.getCurrentSession();
 			Query q1=session.createQuery("from Login where role= :r AND username= :u");
@@ -31,7 +34,7 @@ public class LoginDao
 		
 			Login temp= (Login) q1.uniqueResult();
 			boolean validUser=BCrypt.checkpw(l.getPassword(),temp.getPassword());
-			System.out.println("in logindao-validate:found= "+"i/p="+l.getPassword()+", db="+temp.getPassword()+", match= "+validUser);
+			infoLog.logActivities("in logindao-validate:found= "+"i/p="+l.getPassword()+", db="+temp.getPassword()+", match= "+validUser);
 			if(!validUser)
 			{ 
 				throw new Exception("Password didn't matched"); 
@@ -40,9 +43,14 @@ public class LoginDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in logindao-validate: "+e);
+			infoLog.logActivities("in logindao-validate: "+e);
 			return null;
 		}
+	}
+	
+	public void logActivities(String s)
+	{
+		//System.out.println("@"+s);
 	}
 	
 }

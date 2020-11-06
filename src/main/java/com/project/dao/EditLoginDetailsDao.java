@@ -17,12 +17,15 @@ public class EditLoginDetailsDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public int editLoginInfo(String id, String username, String passsword) 
 	{
 		try 
 		{
-			System.out.println("in EditLoginDetailsDao-editLoginInfo:got= "+id+" "+username+" "+passsword);
+			infoLog.logActivities("in EditLoginDetailsDao-editLoginInfo:got= "+id+" "+username+" "+passsword);
 			
 			Session session= sf.getCurrentSession();
 			String hashStr=BCrypt.hashpw(passsword, BCrypt.gensalt());
@@ -32,12 +35,12 @@ public class EditLoginDetailsDao
 			q1.setParameter("i", id);
 
 			int res= q1.executeUpdate();
-			System.out.println("in EditLoginDetailsDao-editLoginInfo:found= "+res+"<b>hash generated= "+hashStr);
+			infoLog.logActivities("in EditLoginDetailsDao-editLoginInfo:found= "+res+"<b>hash generated= "+hashStr);
 			return res;
 		}
 		catch(Exception e)
 		{
-			System.out.println("in EditLoginDetailsDao-editLoginInfo: "+e);
+			infoLog.logActivities("in EditLoginDetailsDao-editLoginInfo: "+e);
 			return 0;
 		}
 	}

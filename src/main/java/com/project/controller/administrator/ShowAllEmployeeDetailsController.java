@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.administrator.AllEmployeeDetailsDao;
 import com.project.dao.administrator.EmployeeDetailsDao;
 import com.project.entity.Employee;
@@ -23,6 +24,8 @@ public class ShowAllEmployeeDetailsController
 	AllEmployeeDetailsDao dao1;
 	@Autowired
 	EmployeeDetailsDao dao2;
+	@Autowired
+	LoginDao infoLog;
 	
 	@RequestMapping("/allEmployeesView.html")
 	public ModelAndView view()
@@ -37,7 +40,7 @@ public class ShowAllEmployeeDetailsController
 	public ModelAndView showEmployeeDetailsViewMethod(@RequestParam("eid")String eid)
 	{
 		try {
-			System.out.println("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: got "+eid);
+			infoLog.logActivities("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: got "+eid);
 			Employee l=(Employee) dao2.show(eid);
 			if(! l.equals(null))
 			{
@@ -53,7 +56,7 @@ public class ShowAllEmployeeDetailsController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: "+e);
+			infoLog.logActivities("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);

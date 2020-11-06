@@ -34,7 +34,7 @@ public class LoginController
 		}
 		catch(Exception e)
 		{
-			System.out.println("LoginController-view: "+e);	
+			dao.logActivities("LoginController-view: "+e);	
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);
@@ -48,11 +48,11 @@ public class LoginController
 	{
 		try {
 			//validation code
-			System.out.println("in LoginController-validate:got= "+role+" "+username+" "+password);
+			dao.logActivities("in LoginController-validate:got= "+role+" "+username+" "+password);
 			Login l1=new Login(null,role, username, password);
 			
 			String userId=dao.validate(l1);	//call to LoginDao
-			System.out.println("returned to logincontroller-validate:got= "+userId);
+			dao.logActivities("returned to logincontroller-validate:got= "+userId);
 
 				if (!userId.equals(null))
 				{	
@@ -60,7 +60,7 @@ public class LoginController
 					 HttpSession session= request.getSession();
 					 Login l=new Login(userId,l1.getRole(),l1.getUsername(),null);
 					 session.setAttribute("userInfo", l);
-					 System.out.println(session.getId());
+					 dao.logActivities(session.getId());
 					 
 					 //display dashboard
 					ModelAndView mv= new ModelAndView();				
@@ -74,7 +74,7 @@ public class LoginController
 			    }
 			catch(Exception e)
 			{
-				System.out.println("LoginController-validate: "+e);	
+				dao.logActivities("LoginController-validate: "+e);	
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("LoginView");
 				mv.addObject("status", "false");

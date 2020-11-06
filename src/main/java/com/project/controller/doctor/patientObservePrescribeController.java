@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.doctor.PatientHistoryDao;
 import com.project.dao.doctor.patientObservePrescribeDao;
 import com.project.dao.opd.DeleteOpdDao;
@@ -29,6 +30,9 @@ public class patientObservePrescribeController
 	@Autowired
 	PatientHistoryDao dao2;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping("/patientObservePrescribe.html")
 	public ModelAndView observationView()
 	{
@@ -39,7 +43,8 @@ public class patientObservePrescribeController
 	
 	@RequestMapping("/addDopdPatientCase.html")
 	public ModelAndView addPatientCase(@RequestParam("symptoms")String symptoms, @RequestParam("diagnosis")String diagnosis, @RequestParam("medicinesDose")String medicinesDose, @RequestParam("dos")String dos, @RequestParam("donts")String donts, @RequestParam("investigations")String investigations, @RequestParam("followupDate")String followupDate, @RequestParam("fees")int fees, HttpServletRequest request)
-	{	System.out.println("in addpatientcase");
+	{	
+		infoLog.logActivities("in addpatientcase");
 		
 		OpdDetails patientcase= new OpdDetails(symptoms, diagnosis, medicinesDose, dos, donts, investigations, followupDate, fees);
 		

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.administrator.AddEmployeeDao;
 import com.project.entity.Address;
 import com.project.entity.Employee;
@@ -21,6 +22,9 @@ public class AddEmployeeController
 {
 	@Autowired
 	AddEmployeeDao dao;
+	
+	@Autowired
+	LoginDao infoLog;
 	
 	@RequestMapping("/addEmployeeView.html")
 	public ModelAndView view()
@@ -33,7 +37,7 @@ public class AddEmployeeController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in AddEmployeeController-view: "+e);
+			infoLog.logActivities("in AddEmployeeController-view: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);
@@ -48,12 +52,12 @@ public class AddEmployeeController
 		{		
 			Name n1= new Name(firstName, middleName, lastName);
 			Address a1= new Address(residentialAddress,permanentAddress);
-			System.out.println("in AddEmployeeController-add: got= "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+role+" "+qualification+" "+specialization);
+			infoLog.logActivities("in AddEmployeeController-add: got= "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+role+" "+qualification+" "+specialization);
 			        
 			Employee e1= new Employee(null,n1,birthdate,gender,email,mobileNo,adharNo,country,state,city,a1,role,qualification,specialization);
 	
 			boolean b=dao.add(e1);
-			System.out.println("returned to AddEmployeeController-add: got="+b);
+			infoLog.logActivities("returned to AddEmployeeController-add: got="+b);
 			
 			if(b)
 			{
@@ -66,7 +70,7 @@ public class AddEmployeeController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in AddEmployeeController-add: "+e);
+			infoLog.logActivities("in AddEmployeeController-add: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);

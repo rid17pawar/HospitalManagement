@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 
 @Component
@@ -16,12 +17,15 @@ public class DeleteEmployeeDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public int delete(String eid) 
 	{
 		try
 		{
-			System.out.println("in DeleteEmployeeDao-delete: got="+eid);
+			infoLog.logActivities("in DeleteEmployeeDao-delete: got="+eid);
 			
 			Session session= sf.getCurrentSession();
 			
@@ -43,7 +47,7 @@ public class DeleteEmployeeDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in DeleteEmployeeDao-delete: "+e);
+			infoLog.logActivities("in DeleteEmployeeDao-delete: "+e);
 			return 0;
 		} 
 	}

@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 import com.project.entity.Opd;
 
@@ -19,13 +20,16 @@ public class AddOpdDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public int add(Opd q) 
 	{
 		Date current= new Date();
 		q.setVisitDate(current);
 		
-		System.out.println("in AddOpdDao-add: got= "+q);
+		infoLog.logActivities("in AddOpdDao-add: got= "+q);
 		Session session= sf.getCurrentSession();
 		
 		try 
@@ -35,7 +39,7 @@ public class AddOpdDao
 			q2.setParameter("e", q.getDoctorId());
 			q2.setParameter("s", 1);
 			Long i=(Long)q2.uniqueResult();
-			System.out.println("doctor exists: "+i);
+			infoLog.logActivities("doctor exists: "+i);
 			
 			if(i==1)
 			{
@@ -60,7 +64,7 @@ public class AddOpdDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in  AddOpdDao-add: "+e);
+			infoLog.logActivities("in  AddOpdDao-add: "+e);
 			return 0;
 		}	
 	}
@@ -68,7 +72,7 @@ public class AddOpdDao
 	@Transactional
 	public String getDoctorId(String pid) 
 	{
-		System.out.println("in AddOpdDao-getDoctorId: got="+pid);
+		infoLog.logActivities("in AddOpdDao-getDoctorId: got="+pid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("select doctorId from Patient where pid= :id");
@@ -81,7 +85,7 @@ public class AddOpdDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in AddOpdDao-getDoctorId: "+e);
+			infoLog.logActivities("in AddOpdDao-getDoctorId: "+e);
 			return null;
 		}	
 	}

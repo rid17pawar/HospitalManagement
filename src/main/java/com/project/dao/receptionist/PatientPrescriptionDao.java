@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Employee;
 import com.project.entity.Opd;
 import com.project.entity.Patient;
@@ -22,11 +23,13 @@ public class PatientPrescriptionDao
 {
 	@Autowired
 	SessionFactory sf;
+	@Autowired
+	LoginDao infoLog;
 	
 	@Transactional
 	public int prescriptionPrintCount()
 	{
-		System.out.println("in PatientPrescriptionDao-prescriptionPrintCount:");
+		infoLog.logActivities("in PatientPrescriptionDao-prescriptionPrintCount:");
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Opd where status= :s");
@@ -40,12 +43,12 @@ public class PatientPrescriptionDao
 			{
 				i++;
 			}
-			System.out.println("in PatientPrescriptionDao-prescriptionPrintCount: found="+i);
+			infoLog.logActivities("in PatientPrescriptionDao-prescriptionPrintCount: found="+i);
 			return i;
 			
 		}catch(Exception e)
 		{
-			System.out.println("in PatientPrescriptionDao-prescriptionPrintCount: "+e);
+			infoLog.logActivities("in PatientPrescriptionDao-prescriptionPrintCount: "+e);
 			return 0;
 		}
 	}
@@ -53,7 +56,7 @@ public class PatientPrescriptionDao
 	@Transactional
 	public List<String[]> getPrescriptionList() 
 	{
-		System.out.println("in PatientPrescriptionDao-getPrescriptionList: ");
+		infoLog.logActivities("in PatientPrescriptionDao-getPrescriptionList: ");
 		
 		Session session= sf.getCurrentSession();
 		Query q1= session.createQuery("from Opd where status= :s");	//HQL use classname not tablename
@@ -80,7 +83,7 @@ public class PatientPrescriptionDao
 			}
 		catch(Exception e)
 		{
-			System.out.println("in PatientPrescriptionDao-getPrescriptionList: "+e);
+			infoLog.logActivities("in PatientPrescriptionDao-getPrescriptionList: "+e);
 			return null;
 		}
 	}
@@ -88,7 +91,7 @@ public class PatientPrescriptionDao
 	@Transactional
 	public String getPatientName(String pid) 
 	{
-		System.out.println("in PatientPrescriptionDao-getPatientName: got="+pid);
+		infoLog.logActivities("in PatientPrescriptionDao-getPatientName: got="+pid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1= session.createQuery("from Patient where pid= :s");	//HQL use classname not tablename
@@ -102,7 +105,7 @@ public class PatientPrescriptionDao
 		}
 		catch(Exception e)
 		{
-			System.out.println("in PatientPrescriptionDao-getPatientName: "+e);
+			infoLog.logActivities("in PatientPrescriptionDao-getPatientName: "+e);
 			return null;
 		}
 	}

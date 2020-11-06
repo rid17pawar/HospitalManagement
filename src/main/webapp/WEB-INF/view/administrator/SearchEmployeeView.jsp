@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" import="com.project.dao.LoginDao" 
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
-   	
+   	 <%! 
+	LoginDao infoLog= new LoginDao();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,12 +102,12 @@ body {
 			 		<%	
 					try{
 						String status=(request.getAttribute("status")).toString();
-						System.out.println(status);
+						infoLog.logActivities(status);
 						if(status.equals("false"))
 						{  
 					%>	<div class="text-danger"><b>No unique employee found...Verify your Credentials..</b></div>
 					<%  }
-						}catch(Exception e){System.out.println(e);}
+						}catch(Exception e){infoLog.logActivities(""+e);}
 					%>
 			
 			<div class="card bg-light border-primary mb-3" >

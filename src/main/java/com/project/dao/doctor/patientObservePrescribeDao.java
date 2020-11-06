@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Opd;
 import com.project.entity.OpdDetails;
 import com.project.entity.Patient;
@@ -20,10 +21,13 @@ public class patientObservePrescribeDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public int add(OpdDetails patientcase,String pid) 
 	{
-		System.out.println("in addpatientcasedao "+patientcase);
+		infoLog.logActivities("in addpatientcasedao "+patientcase);
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Opd where pid= :i AND status= :s");
 		q1.setParameter("i", pid);
@@ -32,7 +36,7 @@ public class patientObservePrescribeDao
 		try 
 		{
 			Opd opd= (Opd) q1.uniqueResult();
-				System.out.println(opd);
+			infoLog.logActivities(""+opd);
 		
 				if(opd.getOpdId()!=0)
 				{				
@@ -50,7 +54,7 @@ public class patientObservePrescribeDao
 			}
 			catch(Exception e)
 			{ 
-			  System.out.println("error in finding opdid "+e);
+				infoLog.logActivities("error in finding opdid "+e);
 			  return 0;
 			}		
 	     }

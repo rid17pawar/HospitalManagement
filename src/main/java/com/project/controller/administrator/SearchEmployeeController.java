@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.administrator.SearchEmployeeDao;
 import com.project.entity.Employee;
 
@@ -21,6 +22,9 @@ public class SearchEmployeeController
 {
 	@Autowired
 	SearchEmployeeDao dao;
+	
+	@Autowired
+	LoginDao infoLog;
 	
 	@RequestMapping("/searchEmployeeView.html")
 	public ModelAndView view()
@@ -35,7 +39,7 @@ public class SearchEmployeeController
 	public ModelAndView searchName(@RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName )
 	{
 		Employee e1= dao.searchName(firstName,lastName);
-		System.out.println("searchName"+e1);
+		infoLog.logActivities("searchName"+e1);
 	    try {
 			if(e1.getEid()!=null)
 			{
@@ -46,7 +50,7 @@ public class SearchEmployeeController
 				return mv;
 			}
 	    }catch(NullPointerException e){
-			System.out.println("no employee found "+e);
+	    	infoLog.logActivities("no employee found "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("administrator/SearchEmployeeView");
 			mv.addObject("status","false");
@@ -59,7 +63,7 @@ public class SearchEmployeeController
 	public ModelAndView searchId(@RequestParam("id")String id)
 	{
 		Employee e1= dao.searchId(id);
-		System.out.println(e1);
+		infoLog.logActivities(""+e1);
 	    try {
 			if(e1.getEid()!=null)
 			{
@@ -70,7 +74,7 @@ public class SearchEmployeeController
 				return mv;
 			}
 	    }catch(NullPointerException e){
-			System.out.println("no employee found "+e);
+	    	infoLog.logActivities("no employee found "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("administrator/SearchEmployeeView");
 			mv.addObject("status","false");
@@ -83,7 +87,7 @@ public class SearchEmployeeController
 	public ModelAndView searchMobileNo(@RequestParam("mobileNo")String mobileNo)
 	{
 		Employee e1= dao.searchMobileNo(mobileNo);
-		System.out.println(e1);
+		infoLog.logActivities(""+e1);
 	    try {
 			if(e1.getEid()!=null)
 			{
@@ -94,7 +98,7 @@ public class SearchEmployeeController
 				return mv;
 			}
 	    }catch(NullPointerException e){
-			System.out.println("no employee found "+e);
+	    	infoLog.logActivities("no employee found "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("administrator/SearchEmployeeView");
 			mv.addObject("status","false");
@@ -107,7 +111,7 @@ public class SearchEmployeeController
 	public ModelAndView searchAadharNo(@RequestParam("aadharNo")String aadharNo)
 	{
 		Employee e1= dao.searchAadharNo(aadharNo);
-		System.out.println(e1);
+		infoLog.logActivities(""+e1);
 	    try {
 			if(e1.getEid()!=null)
 			{
@@ -118,7 +122,7 @@ public class SearchEmployeeController
 				return mv;
 			}
 	    }catch(NullPointerException e){
-			System.out.println("no employee found "+e);
+	    	infoLog.logActivities("no employee found "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("administrator/SearchEmployeeView");
 			mv.addObject("status","false");

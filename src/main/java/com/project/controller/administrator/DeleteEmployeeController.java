@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.administrator.DeleteEmployeeDao;
 
 @Controller
@@ -14,14 +15,17 @@ public class DeleteEmployeeController
 	@Autowired
 	DeleteEmployeeDao dao;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping("/deleteEmployee.html")
 	public ModelAndView delete(@RequestParam("eid")String eid)
 	{
 		try
 		{
-			System.out.println("in DeleteEmployeeController-delete: got= "+eid);
+			infoLog.logActivities("in DeleteEmployeeController-delete: got= "+eid);
 			int res=dao.delete(eid);
-			System.out.println("returned to DeleteEmployeeController-delete: got= "+res);
+			infoLog.logActivities("returned to DeleteEmployeeController-delete: got= "+res);
 			
 			if(res==1)
 			{
@@ -34,7 +38,7 @@ public class DeleteEmployeeController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in DeleteEmployeeController-delete: "+e);
+			infoLog.logActivities("in DeleteEmployeeController-delete: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);

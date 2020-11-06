@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.project.dao.LoginDao;
 import com.project.entity.Address;
 import com.project.entity.Employee;
 import com.project.entity.Name;
@@ -20,11 +21,14 @@ public class EditEmployeeDao
 	@Autowired
 	SessionFactory sf;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@Transactional
 	public int edit(String eid, Name name, String birthdate, String gender, String emailId, Long mobileNo, Long adharNo, String country, String state, String city, Address address, String role, String qualification, String specialization)
 	{
 		//only enabled fields values is updated ..
-		System.out.println("in EditEmployeeDao-edit: got= "+eid+" "+name+" "+birthdate+" "+gender+" "+emailId+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+address+" "+role+" "+qualification+" "+specialization);
+		infoLog.logActivities("in EditEmployeeDao-edit: got= "+eid+" "+name+" "+birthdate+" "+gender+" "+emailId+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+address+" "+role+" "+qualification+" "+specialization);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("update Employee set name.firstName= :t1, name.middleName= :t2, name.lastName= :t3, birthdate= :t4, emailId= :t5, mobileNo= :t6, country= :t7, state= :t8, city=:t9, address.residentialAddress= :t10, qualification= :t12, specialization= :t13 where eid= :id");
@@ -44,12 +48,12 @@ public class EditEmployeeDao
 		
 		try {
 			int res= q1.executeUpdate();
-			System.out.println("in EditEmployeeDao-edit: found= "+res);
+			infoLog.logActivities("in EditEmployeeDao-edit: found= "+res);
 			return res;
 			}
 		catch(Exception e)
 		{
-			System.out.println("in logindao-validate: "+e);
+			infoLog.logActivities("in logindao-validate: "+e);
 			return 0;
 		}
 	}

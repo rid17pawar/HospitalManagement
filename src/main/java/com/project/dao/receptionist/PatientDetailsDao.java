@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.project.dao.LoginDao;
 import com.project.entity.Patient;
 
 @Component
@@ -14,11 +16,13 @@ public class PatientDetailsDao
 {
 	@Autowired
 	SessionFactory sf;
+	@Autowired
+	LoginDao infoLog;
 	
 	@Transactional
 	public Patient show(String pid)
 	{
-		System.out.println("in PatientDetailsDao-show: got= "+pid);
+		infoLog.logActivities("in PatientDetailsDao-show: got= "+pid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Patient where pid= :id");
@@ -26,12 +30,12 @@ public class PatientDetailsDao
 
 		try {
 			Patient temp= (Patient) q1.uniqueResult();
-			System.out.println("in PatientDetailsDao-show: found= "+temp);
+			infoLog.logActivities("in PatientDetailsDao-show: found= "+temp);
 			return temp;
 			}
 		catch(Exception e)
 		{
-			System.out.println("in PatientDetailsDao-show: "+e);
+			infoLog.logActivities("in PatientDetailsDao-show: "+e);
 			return null;
 		}
 	}

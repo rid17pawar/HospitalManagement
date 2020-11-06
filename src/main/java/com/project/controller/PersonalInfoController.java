@@ -3,6 +3,7 @@ package com.project.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.dao.LoginDao;
 import com.project.dao.PersonalInfoDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
 import com.project.entity.Employee;
@@ -21,16 +22,19 @@ public class PersonalInfoController
 	@Autowired
 	PatientPrescriptionDao dao1;
 	
+	@Autowired
+	LoginDao infoLog;
+	
 	@RequestMapping(value="/personalInfo.html")
 	public ModelAndView info(HttpServletRequest request)
 	{
 		try {
-			System.out.println("in PersonalInfoController-info:");
+			infoLog.logActivities("in PersonalInfoController-info:");
 			HttpSession session=request.getSession();
 			Login l=(Login)session.getAttribute("userInfo");
 			
 			Employee e1=dao.info(l.getId());
-			System.out.println("retuned to PersonalInfoController-info: got= "+e1);
+			infoLog.logActivities("retuned to PersonalInfoController-info: got= "+e1);
 			
 				if(! e1.getEid().equals(null))
 				{
@@ -45,7 +49,7 @@ public class PersonalInfoController
 			}
 			catch(Exception e)
 			{
-				System.out.println("in PersonalInfoController-info: "+e);
+				infoLog.logActivities("in PersonalInfoController-info: "+e);
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("failure");
 				mv.addObject("error",e);

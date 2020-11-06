@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.project.dao.LoginDao;
 import com.project.entity.Patient;
 
 @Component
@@ -14,11 +16,13 @@ public class SearchPatientDao
 {
 	@Autowired
 	SessionFactory sf;
+	@Autowired
+	LoginDao infoLog;
 	
 	@Transactional
 	public Patient searchName(String firstName, String lastName) 
 	{
-		System.out.println("in SearchPatientDao-searchName: got= "+firstName+" "+lastName);
+		infoLog.logActivities("in SearchPatientDao-searchName: got= "+firstName+" "+lastName);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Patient where firstName= :f AND lastName= :l");
@@ -28,12 +32,12 @@ public class SearchPatientDao
 		try 
 		{
 			Patient temp= (Patient) q1.uniqueResult();
-			System.out.println("in SearchPatientDao-searchName: found= "+temp);
+			infoLog.logActivities("in SearchPatientDao-searchName: found= "+temp);
 			return temp;
 		}
 		catch(Exception e)
 		{ 
-			System.out.println("in SearchPatientDao-searchName: "+e);
+			infoLog.logActivities("in SearchPatientDao-searchName: "+e);
 			return null;
 		}
 			
@@ -42,7 +46,7 @@ public class SearchPatientDao
 	@Transactional
 	public Patient searchId(String pid) 
 	{
-		System.out.println("in SearchPatientDao-searchId: got= "+pid);
+		infoLog.logActivities("in SearchPatientDao-searchId: got= "+pid);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Patient where pid= :id");
@@ -51,12 +55,12 @@ public class SearchPatientDao
 		try 
 		{
 			Patient temp= (Patient) q1.uniqueResult();
-			System.out.println("in SearchPatientDao-searchId: found= "+temp);
+			infoLog.logActivities("in SearchPatientDao-searchId: found= "+temp);
 			return temp;
 		}
 		catch(Exception e)
 		{ 
-			System.out.println("in SearchPatientDao-searchId: "+e);
+			infoLog.logActivities("in SearchPatientDao-searchId: "+e);
 			return null;
 		}		
 	}
@@ -64,7 +68,7 @@ public class SearchPatientDao
 	@Transactional
 	public Patient searchMobileNo(Long mobileNo) 
 	{
-		System.out.println("in SearchPatientDao-searchMobileNo: got= "+mobileNo);
+		infoLog.logActivities("in SearchPatientDao-searchMobileNo: got= "+mobileNo);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Patient where mobileNo= :no");
@@ -73,12 +77,12 @@ public class SearchPatientDao
 		try 
 		{
 			Patient temp= (Patient) q1.uniqueResult();
-			System.out.println("in SearchPatientDao-searchMobileNo: found= "+temp);
+			infoLog.logActivities("in SearchPatientDao-searchMobileNo: found= "+temp);
 			return temp;
 		}
 		catch(Exception e)
 		{ 
-			System.out.println("in SearchPatientDao-searchMobileNo: "+e);
+			infoLog.logActivities("in SearchPatientDao-searchMobileNo: "+e);
 			return null;
 		}	
 	}
@@ -86,7 +90,7 @@ public class SearchPatientDao
 	@Transactional
 	public Patient searchAdharNo(Long adharNo) 
 	{
-		System.out.println("in SearchPatientDao-searchAdharNo: got= "+adharNo);
+		infoLog.logActivities("in SearchPatientDao-searchAdharNo: got= "+adharNo);
 		
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("from Patient where adharNo= :no");
@@ -95,12 +99,12 @@ public class SearchPatientDao
 		try 
 		{
 			Patient temp= (Patient) q1.uniqueResult();
-			System.out.println("in SearchPatientDao-searchAdharNo: found= "+temp);
+			infoLog.logActivities("in SearchPatientDao-searchAdharNo: found= "+temp);
 			return temp;
 		}
 		catch(Exception e)
 		{ 
-			System.out.println("in SearchPatientDao-searchAdharNo: "+e);
+			infoLog.logActivities("in SearchPatientDao-searchAdharNo: "+e);
 			return null;
 		}	
 	}
@@ -109,7 +113,7 @@ public class SearchPatientDao
 	public String searchDoctorAssigned(String eid)
 	{
 		try{
-			System.out.println("in SearchPatientDao-searchDoctorAssigned: got= "+eid);
+			infoLog.logActivities("in SearchPatientDao-searchDoctorAssigned: got= "+eid);
 			
 			Session session= sf.getCurrentSession();
 			Query q1=session.createQuery("select name.firstName,name.lastName from Employee where eid= :id");
@@ -119,16 +123,16 @@ public class SearchPatientDao
 			Object o[]=(Object[]) q1.uniqueResult();
 				for(Object obj:o)
 				{
-					System.out.println(obj);
+					infoLog.logActivities(""+obj);
 					String name=" "+(String) obj;
 					dname+=name;
 				}
-			System.out.println("in SearchPatientDao-searchDoctorAssigned: found= "+dname);	
+				infoLog.logActivities("in SearchPatientDao-searchDoctorAssigned: found= "+dname);	
 			return dname;
 			}
 			catch(Exception e)
 			{ 
-				System.out.println("in SearchPatientDao-searchDoctorAssigned: "+e);
+				infoLog.logActivities("in SearchPatientDao-searchDoctorAssigned: "+e);
 				return null;
 			}
 			

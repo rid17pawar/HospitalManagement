@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.project.dao.LoginDao;
 import com.project.entity.Address;
 import com.project.entity.Name;
 
@@ -15,12 +17,14 @@ public class EditPatientDao
 {
 	@Autowired
 	SessionFactory sf;
+	@Autowired
+	LoginDao infoLog;
 
 	@Transactional
 	public int edit(String pid, Name name, String birthdate, String gender, String emailId, Long mobileNo, Long adharNo,String country, String state, String city, Address address, String bloodGroup, String chronicDiseases,String medicineAllergy, String doctorId) 
 	{
 		//only enabled fields values is updated ..
-		System.out.println("in EditPatientDao-edit: got= "+pid+" "+name+" "+birthdate+" "+gender+" "+emailId+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+address+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
+		infoLog.logActivities("in EditPatientDao-edit: got= "+pid+" "+name+" "+birthdate+" "+gender+" "+emailId+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+address+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
 				
 		Session session= sf.getCurrentSession();
 		Query q1=session.createQuery("update Patient set name.firstName= :t1, name.middleName= :t2, name.lastName= :t3, birthdate= :t4, emailId= :t5, mobileNo= :t6, country= :t7, state= :t8, city=:t9, address.residentialAddress= :t10, chronicDiseases= :t13, medicineAllergy= :t14, doctorId= :t15 where pid= :id");
@@ -41,12 +45,12 @@ public class EditPatientDao
 
 		try{
 			int res= q1.executeUpdate();
-			System.out.println("in EditPatientDao-edit: update status="+res);
+			infoLog.logActivities("in EditPatientDao-edit: update status="+res);
 			return res;
 			}
 		catch(Exception e)
 		{
-			System.out.println("in EditPatientDao-edit: "+e);
+			infoLog.logActivities("in EditPatientDao-edit: "+e);
 			return 0;
 		}
 	}

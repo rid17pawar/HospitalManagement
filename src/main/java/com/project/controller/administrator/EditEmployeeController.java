@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.dao.LoginDao;
 import com.project.dao.administrator.EditEmployeeDao;
 import com.project.dao.administrator.EmployeeDetailsDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
@@ -27,6 +28,8 @@ public class EditEmployeeController
 	EmployeeDetailsDao dao1;
 	@Autowired
 	EditEmployeeDao dao2;
+	@Autowired
+	LoginDao infoLog;
 	
 	@RequestMapping(value="/editPersonalDetailsView.html")
 	public ModelAndView editView(HttpServletRequest request)
@@ -38,7 +41,7 @@ public class EditEmployeeController
 			String eid= l.getId();
 			
 			Employee e= dao1.show(eid);
-			System.out.println("returned to EditEmployeeController-editView: got= "+e);
+			infoLog.logActivities("returned to EditEmployeeController-editView: got= "+e);
 			
 				if(! e.getEid().equals(null))
 				{
@@ -53,7 +56,7 @@ public class EditEmployeeController
 			}
 		catch(Exception e)
 		{ 
-			System.out.println("in EditEmployeeController-editView: "+e);	
+			infoLog.logActivities("in EditEmployeeController-editView: "+e);	
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);
@@ -76,10 +79,10 @@ public class EditEmployeeController
 		try {
 			Name n1=new Name(firstName,middleName,lastName);
 			Address a1= new Address(residentialAddress, permanentAddress);
-			System.out.println("in EditEmployeeController-edit: got= "+eid+" "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+role+" "+qualification+" "+specialization);
+			infoLog.logActivities("in EditEmployeeController-edit: got= "+eid+" "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+role+" "+qualification+" "+specialization);
 			
 			int res=dao2.edit(eid,n1,birthdate,gender,email,mobileNo,adharNo,country,state,city,a1,role,qualification,specialization);
-			System.out.println("returned to EditEmployeeController-edit: got= "+res);
+			infoLog.logActivities("returned to EditEmployeeController-edit: got= "+res);
 			
 			if(res==1)
 			{
@@ -93,7 +96,7 @@ public class EditEmployeeController
 		}
 		catch(Exception e)
 		{
-			System.out.println("in EditEmployeeController-edit: "+e);
+			infoLog.logActivities("in EditEmployeeController-edit: "+e);
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("failure");
 			mv.addObject("error",e);

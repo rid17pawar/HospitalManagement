@@ -122,14 +122,6 @@ body {
 				        </div>
 				    </div><br/>
 					
-<%-- 					<%@ page import="java.util.Date" %> --%>
-<%-- 					<%@ page import="java.text.SimpleDateFormat" %> --%>
-<%-- 					<%   --%>
-<!-- 						Date today=new Date(); -->
-<!-- 						SimpleDateFormat f= new SimpleDateFormat("yyyy-mm-dd"); -->
-<!-- 						String date=f.format(today); -->
-<!-- 						System.out.println(date); -->
-<!-- 					%> -->
 				     <div class="form-group">
 				      <label>Birthdate</label>
 				      <input type="date" class="form-control" id="exampleInputEmail1" name="birthdate" placeholder="Choose BirthDate"
