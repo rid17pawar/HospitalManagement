@@ -96,25 +96,25 @@
 ![Receptionist Dashboard add patient to opd](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/receptionistAdd.png)
 
 ## System Diagrams
-1. Activity Diagram
 
-![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Activity%20Diagram.png)
-
-2. Class Diagram
-
-![Class Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Class%20Diagram.png)
-
-3. Sequence Diagram
-
-![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Sequence%20Diagram.png)
-
-4. State Diagram
-
-![State Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/State%20Diagram.png)
-
-5. Usecase Diagram
+1. Usecase Diagram
 
 ![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Usecase%20Diagram.jpg)
 
+2. Activity Diagram
+
+![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Activity%20Diagram.png)
+
+3. Class Diagram
+
+![Class Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Class%20Diagram.png)
+
+4. Sequence Diagram
+
+![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/Sequence%20Diagram.png)
+
+5. State Diagram
+
+![State Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/State%20Diagram.png)
 
 ### Thank You !
