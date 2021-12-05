@@ -27,7 +27,7 @@ public class DeleteOpdDao
 		infoLog.logActivities("in DeleteOpdDao-delete: got= "+pid);
 		
 		Session session= sf.getCurrentSession();
-		Query q1=session.createQuery("update Opd set status=0 where pid= :id AND status=1");
+		Query q1=session.createQuery("delete from Opd where pid= :id AND status=1");
 		q1.setParameter("id", pid);
 		
 		try {
