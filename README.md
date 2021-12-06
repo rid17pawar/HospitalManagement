@@ -99,22 +99,22 @@
 
 1. Usecase Diagram
 
-![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/tree/master/projectReportPPT/System%20Diagrams/Usecase%20Diagram.jpg)
+![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Usecase%20Diagram.jpg)
 
 2. Activity Diagram
 
-![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/tree/master/projectReportPPT/System%20Diagrams/Activity%20Diagram.png)
+![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Activity%20Diagram.png)
 
 3. Class Diagram
 
-![Class Diagram](https://github.com/rid17pawar/HospitalManagement/tree/master/projectReportPPT/System%20Diagrams/Class%20Diagram.png)
+![Class Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Class%20Diagram.png)
 
 4. Sequence Diagram
 
-![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/tree/master/projectReportPPT/System%20Diagrams/Sequence%20Diagram.png)
+![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Sequence%20Diagram.png)
 
 5. State Diagram
 
-![State Diagram](https://github.com/rid17pawar/HospitalManagement/tree/master/projectReportPPT/System%20Diagrams/State%20Diagram.png)
+![State Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/State%20Diagram.png)
 
 ### Thank You !
