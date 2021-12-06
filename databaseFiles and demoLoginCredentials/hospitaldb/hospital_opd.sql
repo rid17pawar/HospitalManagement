@@ -28,8 +28,12 @@ CREATE TABLE `opd` (
   `pid` varchar(255) DEFAULT NULL,
   `doctorid` varchar(255) DEFAULT NULL,
   `status` int(11) NOT NULL,
-  PRIMARY KEY (`opdid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`opdid`),
+  KEY `fk_pid` (`pid`),
+  KEY `fk_doctorid` (`doctorid`),
+  CONSTRAINT `fk_doctorid` FOREIGN KEY (`doctorid`) REFERENCES `employee` (`eid`),
+  CONSTRAINT `fk_pid` FOREIGN KEY (`pid`) REFERENCES `patient` (`pid`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +42,7 @@ CREATE TABLE `opd` (
 
 LOCK TABLES `opd` WRITE;
 /*!40000 ALTER TABLE `opd` DISABLE KEYS */;
-INSERT INTO `opd` VALUES (1,'2020-06-10','P101','EMP101',0),(6,'2020-06-21','P104','EMP101',1),(7,'2020-06-21','P101','EMP101',0),(8,'2020-09-24','P101','EMP101',1);
+INSERT INTO `opd` VALUES (1,'2020-06-10','P101','EMP101',0),(7,'2020-06-21','P101','EMP101',0),(9,'2021-12-05','P101','EMP101',1),(11,'2021-12-05','P102','EMP103',1),(13,'2021-12-05','P104','EMP101',2),(14,'2021-12-06','P105','EMP101',0),(16,'2021-12-06','P105','EMP101',1);
 /*!40000 ALTER TABLE `opd` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-04 21:52:43
+-- Dump completed on 2021-12-06 16:26:57

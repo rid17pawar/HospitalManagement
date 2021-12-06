@@ -59,7 +59,7 @@ public class PatientDopdDetailsController
 			}
 	}
 	
-	@RequestMapping(value="/viewDopdPatient2.html", method = RequestMethod.POST)
+	@RequestMapping(value="/viewDopdPatient2.html")
 	public ModelAndView viewData(HttpServletRequest request)
 	{
 		try 

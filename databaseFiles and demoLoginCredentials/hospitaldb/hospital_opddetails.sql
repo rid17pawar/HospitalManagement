@@ -42,7 +42,7 @@ CREATE TABLE `opddetails` (
 
 LOCK TABLES `opddetails` WRITE;
 /*!40000 ALTER TABLE `opddetails` DISABLE KEYS */;
-INSERT INTO `opddetails` VALUES ('1','#headache #bodypain','weakness','#crocin@2 #neutrolin-B@3','#drink warm water','#junk food','none','2020-06-20','200'),('7','#abdominal pain #fever #nausea','typhoid','#crocin500@2  #meftal spas@2 #ofloxine500@1','#rest #eat dal-chaval #warm water','#oily food #cold drinks','blood test','2020-06-26','500');
+INSERT INTO `opddetails` VALUES ('1','#headache #bodypain','weakness','#crocin@2 #neutrolin-B@3','#drink warm water','#junk food','none','2020-06-20','200'),('13','# high fever #nausea #headache #weakness','viral fever','#crocin-500@2 #neutrolin-B@1','#drink warm water ','#avoid fried or cool food item','none','2021-12-16','300'),('14','#weakness #nausea','fever','#meftal spas@2','#rest','#cold food items','none','2021-12-23','700'),('7','#abdominal pain #fever #nausea','typhoid','#crocin500@2  #meftal spas@2 #ofloxine500@1','#rest #eat dal-chaval #warm water','#oily food #cold drinks','blood test','2020-06-26','500');
 /*!40000 ALTER TABLE `opddetails` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-04 21:52:43
+-- Dump completed on 2021-12-06 16:26:57

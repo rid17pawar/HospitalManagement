@@ -66,7 +66,7 @@ public class AddPatientDao
 	public boolean add(Patient p1) 
 	{
 		infoLog.logActivities("in AddPatientDao-add: got= "+p1);
-		try {
+		//try {
 			Date date= new Date();
 			p1.setRegistrationDate(date);  //currentdate is stored
 					
@@ -87,12 +87,12 @@ public class AddPatientDao
 			
 			infoLog.logActivities("in AddPatientDao-add: incremented pid= "+pid+" update status="+res);
 			return true;
-			}
+			/*}
 			catch(Exception e)
 			{
 				infoLog.logActivities("in AddPatientDao-add: "+e);
 				return false;
-			}
+			}*/
 		
 	}
 

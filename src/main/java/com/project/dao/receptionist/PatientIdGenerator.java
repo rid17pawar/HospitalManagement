@@ -31,11 +31,11 @@ public class PatientIdGenerator implements IdentifierGenerator
             {
                 Integer id=rs.getInt(1)+101;	
                 String generatedId = prefix + id.toString();
-                infoLog.logActivities("Generated Id: " + generatedId);
+                //infoLog.logActivities("Generated Id: " + generatedId);
                 return generatedId;
             }
         } catch (SQLException e) 
-        {	infoLog.logActivities(""+e); }
+        {	e.printStackTrace(); }
 
         return null;
     	}

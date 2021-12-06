@@ -63,7 +63,7 @@ public class AddPatientController
 	@RequestMapping(value="/addPatient.html", method = RequestMethod.POST)
 	public ModelAndView add(@RequestParam("firstName")String firstName, @RequestParam("middleName")String middleName, @RequestParam("lastName")String lastName, @RequestParam("birthdate")String birthdate, @RequestParam("gender")String gender, @RequestParam("email")String email, @RequestParam("mobileNo")Long mobileNo, @RequestParam("adharNo")Long adharNo, @RequestParam("country")String country, @RequestParam("state")String state, @RequestParam("city")String city, @RequestParam("residentialAddress")String residentialAddress, @RequestParam("permanentAddress")String permanentAddress, @RequestParam("bloodGroup")String bloodGroup, @RequestParam("chronicDiseases")String chronicDiseases, @RequestParam("medicineAllergy")String medicineAllergy, @RequestParam("doctorId")String doctorId)
 	{	
-		try{
+		//try{
 			Name n1= new Name(firstName, middleName, lastName);
 			Address a1= new Address(residentialAddress,permanentAddress);
 			infoLog.logActivities("in AddPatientController-add: got= "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+bloodGroup+" "+chronicDiseases+" "+medicineAllergy+" "+doctorId);
@@ -78,9 +78,9 @@ public class AddPatientController
 					mv.setViewName("successPage");
 					return mv;
 				}
-				else
-				{   throw new Exception();  }
-			}
+				//else
+				//{   throw new Exception();  }
+			/*}
 			catch(Exception e)
 			{
 				infoLog.logActivities("in AddPatientController-add: "+e);
@@ -88,6 +88,7 @@ public class AddPatientController
 				mv.setViewName("failure");
 				mv.addObject("error",e);
 				return mv;
-			}
+			}*/
+				return new ModelAndView();
 	}
 }

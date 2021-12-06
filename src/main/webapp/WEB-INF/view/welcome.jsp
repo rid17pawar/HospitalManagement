@@ -135,9 +135,53 @@ body {
 					Welcome <span style="color: orange;"><%=l.getUsername() %> </span>! <br/>
 					 Let's Get Started !
 				</div></h1>
+		
+		<%@page import="java.util.List" %>		
+		<% if(l.getRole().equals("administrator")){ 
+			List<Integer> users_count=(List<Integer>) request.getAttribute("users_count");
+		%>
+			<br/><br/>
+			<div class="row">
+			  <div class="col-sm-3">
+			    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+				  <div class="card-body">
+				    <h4 class="card-title">Doctors</h4>
+				    <p class="card-text"><%=users_count.get(0) %></p>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <div class="col-sm-3">
+			    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+				  <div class="card-body">
+				    <h4 class="card-title">Patients</h4>
+				    <p class="card-text"><%=users_count.get(1) %></p>
+				  </div>
+				</div>
+			  </div>
+			  
+			  <div class="col-sm-3">
+			    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+				  <div class="card-body">
+				    <h4 class="card-title">Employees</h4>
+				    <p class="card-text"><%=users_count.get(2) %></p>
+				  </div>
+				</div>
+			 </div>
+				
+			<div class="col-sm-3">
+			    <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+				  <div class="card-body">
+				    <h4 class="card-title">OPD Fees</h4>
+				    <p class="card-text">Rs.<%=users_count.get(3) %></p>
+				  </div>
+				</div>
+			  </div>
+		<%} %>
+		
 			</div>
 		</div>
-		
+				
 	</div>
 	</div>
 	

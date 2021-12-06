@@ -44,7 +44,9 @@ CREATE TABLE `patient` (
   `doctorId` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`pid`),
   UNIQUE KEY `emailID` (`emailID`),
-  UNIQUE KEY `adharNo` (`adharNo`)
+  UNIQUE KEY `adharNo` (`adharNo`),
+  KEY `fk_assigned_doctorid` (`doctorId`),
+  CONSTRAINT `fk_assigned_doctorid` FOREIGN KEY (`doctorId`) REFERENCES `employee` (`eid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,7 +56,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES ('2020-06-21','P101','ashlesha','atul','narkhede','1990-04-12','female','ashlesha@gmail.com',1989478593,901238756123,'india','maharashtra','nashik','bhabha nagar','bhabha nagar','A+','none','bluemox','EMP101'),('2020-06-21','P102','ritu','yuvraj','mahajan','1990-05-02','female','ritu@gmail.com',9823475901,109478563215,'india','maharashtra','nashik','uttam nagar','uttam nagar','B-','diabetes','none','EMP103'),('2020-06-21','P103','siddhi','pramod','patil','1991-05-17','female','siddhi@gmail.com',9847382091,823947610019,'india','maharashtra','nashik','happy house apartment','happy house apartment','O+','none','none','EMP102'),('2020-06-21','P104','kusum','pawan','hiray','1973-06-28','female','kusum@gmail.com',9478301834,728001823453,'india','maharashtra','nashik','panchavati, nashik','panchavati, nashik','AB+','diabetes','none','EMP101');
+INSERT INTO `patient` VALUES ('2020-06-21','P101','ashlesha','atul','narkhede','1990-04-12','female','ashlesha@gmail.com',1989478593,901238756123,'india','maharashtra','nashik','bhabha nagar','bhabha nagar','A+','none','bluemox','EMP101'),('2020-06-21','P102','ritu','yuvraj','mahajan','1990-05-02','female','ritu@gmail.com',9823475901,109478563215,'india','maharashtra','nashik','uttam nagar','uttam nagar','B-','diabetes','none','EMP103'),('2020-06-21','P103','siddhi','pramod','patil','1991-05-17','female','siddhi@gmail.com',9847382091,823947610019,'india','maharashtra','nashik','happy house apartment','happy house apartment','O+','none','none','EMP102'),('2020-06-21','P104','kusum','pawan','hiray','1973-06-28','female','kusum@gmail.com',9478301834,728001823453,'india','maharashtra','nashik','panchavati, nashik','panchavati, nashik','AB+','diabetes','none','EMP101'),('2021-12-06','P105','anand','nitin','shirole','2000-08-10','male','anand123@gmail.com',9023710243,450123948572,'india','maharashtra','pune','bibewadi','bibewadi','AB+','none','none','EMP101');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -67,4 +69,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-04 21:52:44
+-- Dump completed on 2021-12-06 16:26:57

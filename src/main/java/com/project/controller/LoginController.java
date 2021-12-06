@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.project.dao.LoginDao;
+import com.project.dao.UsersInSystemDao;
 import com.project.dao.receptionist.PatientPrescriptionDao;
 import com.project.entity.Login;
 
@@ -21,6 +22,9 @@ public class LoginController
 	
 	@Autowired
 	PatientPrescriptionDao dao1;
+	
+	@Autowired
+	UsersInSystemDao dao2;
 	 
 	@RequestMapping(value="/login.html", method = RequestMethod.POST)
 	public ModelAndView view()
@@ -61,11 +65,15 @@ public class LoginController
 					 Login l=new Login(userId,l1.getRole(),l1.getUsername(),null);
 					 session.setAttribute("userInfo", l);
 					 dao.logActivities(session.getId());
-					 
+					 for(Integer i: dao2.getUsersInSystem()) {
+						 dao.logActivities(i.toString());
+					 }
+					 					 
 					 //display dashboard
 					ModelAndView mv= new ModelAndView();				
 					mv.setViewName("welcome");
 					mv.addObject("prescriptionsCount", dao1.prescriptionPrintCount());  //for receptionist only
+					mv.addObject("users_count", dao2.getUsersInSystem());  //for admin only
 					return mv;
 				}
 				else
