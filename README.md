@@ -73,7 +73,7 @@
 
 1. Homepage
 
-![Homepage](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/loginpg.png)
+![Homepage](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/homepg.png)
 
 2. Login page
 
@@ -81,7 +81,9 @@
 
 3. Administrator Dashboard
 
-![Administrator Dashboard](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/adminAll.png)
+![Administrator Dashboard](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/adminDashboard.png)
+
+![Administrator All employee view](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/adminAll.png)
 
 4. Doctor Dashboard
 
