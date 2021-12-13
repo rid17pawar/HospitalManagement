@@ -8,8 +8,8 @@ create table login ( id varchar(155), role varchar(255),username varchar(255), p
 create table employee (joiningDate date, eid varchar(255), firstName varchar(255), middleName varchar(255), lastName varchar(255),  birthdate varchar(255),  gender varchar(255), emailID varchar(255),mobileno bigint, adharNo bigint, country varchar(255), state varchar(255), city varchar(255), residentialAddress varchar(255), permanentAddress varchar(255), role varchar(255), qualification varchar(255), specialization varchar(255), primary key (eid), unique(emailID), unique(adharNo), unique(mobileno));
 create table patient (registrationDate date, pid varchar(255), firstName varchar(255), middleName varchar(255), lastName varchar(255),  birthdate varchar(255),  gender varchar(255), emailID varchar(255),mobileno bigint, adharNo bigint, country varchar(255), state varchar(255), city varchar(255), residentialAddress varchar(255), permanentAddress varchar(255), bloodGroup varchar(5), chronicDiseases varchar(255), medicineAllergy varchar(255), doctorId varchar(255), primary key (pid), unique(emailID), unique(adharNo), unique(mobileno));
 create table opd (opdid int not null auto_increment, visitdate date, pid varchar(255), doctorid varchar(255), status int not null, primary key(opdid));
-create table opddetails(opdid  varchar(255),  symptoms varchar(255), diagnosis varchar(255), medicinesDose varchar(255), dos varchar(255), donts varchar(255), investigations varchar(255), followupDate varchar(255), fees varchar(255), primary key(opdid));
-create table idgenerator(id int not null, primary key(id));
+create table opddetails(opdid  varchar(255),  symptoms varchar(255), diagnosis varchar(255), medicinesDose varchar(255), dos varchar(255), donts varchar(255), investigations varchar(255), followupDate varchar(255), fees varchar(255));
+create table idgenerate(eid int not null, pid int not null, unique(eid), unique(pid));
 -(manually add eid=0 pid=0 in IDGENERATE table)
 
 //add foreign key constraints
