@@ -11,7 +11,7 @@
 
 ## Technologies Used-
 
-![TechStack](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/techStack.png)
+![TechStack](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/techStack.png)
 
 
 ### 1. Front end Technologies:
@@ -73,50 +73,50 @@
 
 1. Homepage
 
-![Homepage](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/homepg.png)
+![Homepage](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/homepg.png)
 
 2. Login page
 
-![Login page](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/loginpg.png)
+![Login page](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/loginpg.png)
 
 3. Administrator Dashboard
 
-![Administrator Dashboard](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/adminDashboard.png)
+![Administrator Dashboard](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/adminDashboard.png)
 
-![Administrator All employee view](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/adminAll.png)
+![Administrator All employee view](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/adminAll.png)
 
 4. Doctor Dashboard
 
-![Doctor Dashboard - patient observation](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/doctorObservation.png)
+![Doctor Dashboard - patient observation](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/doctorObservation.png)
 
-![Doctor Dashboard - patient prescription](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/doctorPrescription.png)
+![Doctor Dashboard - patient prescription](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/doctorPrescription.png)
 
 5. Receptionist Dashboard
 
-![Receptionist Dashboard search patient](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/receptionistSearch.png)
+![Receptionist Dashboard search patient](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/receptionistSearch.png)
 
-![Receptionist Dashboard add patient to opd](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/imagesForReadMe/receptionistAdd.png)
+![Receptionist Dashboard add patient to opd](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/receptionistAdd.png)
 
 ## System Diagrams
 
 1. Usecase Diagram
 
-![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Usecase%20Diagram.jpg)
+![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Usecase%20Diagram.jpg)
 
 2. Activity Diagram
 
-![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Activity%20Diagram.png)
+![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Activity%20Diagram.png)
 
 3. Class Diagram
 
-![Class Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Class%20Diagram.png)
+![Class Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Class%20Diagram.png)
 
 4. Sequence Diagram
 
-![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/Sequence%20Diagram.png)
+![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Sequence%20Diagram.png)
 
 5. State Diagram
 
-![State Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/projectReportPPT/System%20Diagrams/State%20Diagram.png)
+![State Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/State%20Diagram.png)
 
 ### Thank You !
