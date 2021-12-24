@@ -9,7 +9,7 @@
    
    It provides some enhanced features such as: an easy interface to add, remove employees as well as it provides PDF of prescription. Thus, reducing need to manually write  and  sign  by doctor.  <br>
   #### PPT Presentation: [click here](https://drive.google.com/file/d/1L6zUvNPXV4mYNnl2zLYyxvyz2RwoUt1G/view?usp=sharing)  <br>
-  #### Project Report: [click here](https://drive.google.com/file/d/12GDe4bO1Fk-miIfzFLIW0KXzCf-_ae1N/view?usp=sharing)
+  #### Project Report: [click here](https://drive.google.com/file/d/1k59kgXb21wMC94LnHJBhxmu5lZgoY4JI/view?usp=sharing)
 
 ## Technologies Used-
 
