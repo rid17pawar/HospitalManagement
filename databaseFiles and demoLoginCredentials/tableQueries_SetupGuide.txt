@@ -1,22 +1,26 @@
 **To save activities going in backend of project in file or display on console use com.project.dao.LoginDao.logActivities() method.**
 
-//MySQL
+___________MySQL___________
+
+//database queries
+create database hospital;
+use hospital;
 
 //create table queries
-create table login ( id varchar(155), role varchar(255),username varchar(255), password varchar(255), primary key(username));
--(manually add one admin login in LOGIN table: EMP100 administrator root123 root123 i.e. HASH of password)
+create table login ( id varchar(255), role varchar(255),username varchar(255), password varchar(255), primary key(username));
+-(manually add one admin login in LOGIN table: EMP100 administrator root123 #[root123] i.e. HASH of password)
 create table employee (joiningDate date, eid varchar(255), firstName varchar(255), middleName varchar(255), lastName varchar(255),  birthdate varchar(255),  gender varchar(255), emailID varchar(255),mobileno bigint, adharNo bigint, country varchar(255), state varchar(255), city varchar(255), residentialAddress varchar(255), permanentAddress varchar(255), role varchar(255), qualification varchar(255), specialization varchar(255), primary key (eid), unique(emailID), unique(adharNo), unique(mobileno));
 create table patient (registrationDate date, pid varchar(255), firstName varchar(255), middleName varchar(255), lastName varchar(255),  birthdate varchar(255),  gender varchar(255), emailID varchar(255),mobileno bigint, adharNo bigint, country varchar(255), state varchar(255), city varchar(255), residentialAddress varchar(255), permanentAddress varchar(255), bloodGroup varchar(5), chronicDiseases varchar(255), medicineAllergy varchar(255), doctorId varchar(255), primary key (pid), unique(emailID), unique(adharNo), unique(mobileno));
 create table opd (opdid int not null auto_increment, visitdate date, pid varchar(255), doctorid varchar(255), status int not null, primary key(opdid));
-create table opddetails(opdid  varchar(255),  symptoms varchar(255), diagnosis varchar(255), medicinesDose varchar(255), dos varchar(255), donts varchar(255), investigations varchar(255), followupDate varchar(255), fees varchar(255));
-create table idgenerate(eid int not null, pid int not null, unique(eid), unique(pid));
+create table opddetails(opdid int, symptoms varchar(255), diagnosis varchar(255), medicinesDose varchar(255), dos varchar(255), donts varchar(255), investigations varchar(255), followupDate varchar(255), fees varchar(255));
+create table idgenerate(eid int not null, pid int not null, primary key(eid), unique(pid));
 -(manually add eid=0 pid=0 in IDGENERATE table)
 
 //add foreign key constraints
 alter table opd add constraint fk_pid foreign key (pid) references patient(pid);
 alter table opd add constraint fk_doctorid foreign key (doctorid) references employee(eid);
 alter table patient add constraint fk_assigned_doctorid foreign key (doctorid) references employee(eid);
-alter table opddetails add constraint fk_opdid foreign key (opdid) references opd(opdid);
+alter table opddetails add constraint fk_opdid foreign key (opdid) references opd(opdid) on delete cascade;
 
 //stored procedure
 CREATE PROCEDURE `users_in_system`(OUT doctors INT, OUT patients INT, OUT employees INT, OUT total_opd_income INT)
@@ -26,13 +30,3 @@ select count(*) into patients from patient;
 select count(*) into employees from employee e where e.status = 1;
 select sum(fees) into total_opd_income from opddetails;
 END
-
-//other queries
-use hospital;
-desc opd;
-select * from login;
-select * from employee;
-select * from patient;
-select * from opd;
-select * from opddetails;
-select * from idgenerate;

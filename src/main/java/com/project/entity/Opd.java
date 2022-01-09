@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import java.util.Date;
 
 @Entity
@@ -12,6 +15,9 @@ public class Opd
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //to generate auto incremented values for column
 	private int opdId=1;
+	
+	//to store date i.e. yyyy-mm-dd
+	@Temporal(TemporalType.DATE)
 	private Date visitDate;
 	private String pid;
 	private String doctorId;  

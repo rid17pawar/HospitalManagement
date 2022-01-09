@@ -21,12 +21,14 @@ public class Employee
 	//to store date i.e. yyyy-mm-dd
 	@Temporal(TemporalType.DATE)
 	private Date joiningDate;
+	
 	@Id
 	@GenericGenerator(name = "employeeId", strategy = "com.project.dao.administrator.EmployeeIdGenerator")
 	@GeneratedValue(generator = "employeeId") //to generate auto incremented custom values for column
 	private String eid;
 	
 	private Name name;
+	
 	private String birthdate;
 	private String gender;
 	
@@ -42,6 +44,7 @@ public class Employee
 	private String country;
 	private String state;
 	private String city;
+	
 	private Address address;
 	
 	private String role;

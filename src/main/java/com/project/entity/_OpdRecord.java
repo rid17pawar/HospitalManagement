@@ -1,6 +1,6 @@
 package com.project.entity;
 
-
+//Not annotated using @Entity bcoz we dont want to store its data in database
 public class _OpdRecord
 {
 	String doctorId;

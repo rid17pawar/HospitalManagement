@@ -6,7 +6,7 @@ import javax.persistence.Id;
 @Entity
 public class Login 
 {
-	private String id;	//foreign key consists eid and pid
+	private String id;	//foreign key, consists eid and pid
 	private String role;
 	@Id
 	private String username;	//primary key

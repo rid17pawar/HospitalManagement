@@ -17,12 +17,14 @@ public class Patient
 	//to store date i.e. yyyy-mm-dd
 		@Temporal(TemporalType.DATE)
 		private Date registrationDate;
+		
 		@Id
 		@GenericGenerator(name = "patientId", strategy = "com.project.dao.receptionist.PatientIdGenerator")
 		@GeneratedValue(generator = "patientId") //to generate auto incremented custom values for column
 		private String pid;
 		
 		private Name name;
+		
 		private String birthdate;
 		private String gender;
 		
@@ -38,6 +40,7 @@ public class Patient
 		private String country;
 		private String state;
 		private String city;
+		
 		private Address address;
 		
 		private String bloodGroup;
