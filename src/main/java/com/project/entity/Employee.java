@@ -25,7 +25,7 @@ public class Employee
 	@Id
 	@GenericGenerator(name = "employeeId", strategy = "com.project.dao.administrator.EmployeeIdGenerator")
 	@GeneratedValue(generator = "employeeId") //to generate auto incremented custom values for column
-	private String eid;
+	private String employeeId;
 	
 	private Name name;
 	
@@ -83,8 +83,8 @@ public class Employee
 		return joiningDate;
 	}
 
-	public String getEid() {
-		return eid;
+	public String getEmployeeId() {
+		return employeeId;
 	}
 
 	public Name getName() {
@@ -147,7 +147,7 @@ public class Employee
 
 	@Override
 	public String toString() {
-		return "Employee [joiningDate=" + joiningDate + ", eid=" + eid + ", name=" + name + ", birthdate=" + birthdate
+		return "Employee [joiningDate=" + joiningDate + ", employeeId=" + employeeId + ", name=" + name + ", birthdate=" + birthdate
 				+ ", gender=" + gender + ", emailID=" + emailID + ", mobileNo=" + mobileNo + ", adharNo=" + adharNo
 				+ ", country=" + country + ", state=" + state + ", city=" + city + ", address=" + address + ", role="
 				+ role + ", qualification=" + qualification + ", specialization=" + specialization + "]";

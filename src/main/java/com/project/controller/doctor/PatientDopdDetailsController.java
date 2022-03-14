@@ -28,7 +28,7 @@ public class PatientDopdDetailsController
 	{
 		try {
 			infoLog.logActivities("in PatientDopdDetailsController-view: got="+pid);
-				Patient p1=dao.searchId(pid);
+				Patient p1=(Patient) dao.searchId("patient",pid);
 				infoLog.logActivities("returned to PatientDopdDetailsController-view: got= "+p1);
 			
 				String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
@@ -68,13 +68,10 @@ public class PatientDopdDetailsController
 			HttpSession session=request.getSession();
 			String pid=(String)session.getAttribute("currentPatientId");
 	
-			Patient p1=dao.searchId(pid);
-			infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+p1);
-			
-			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
-			infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+doctorAssigned);
-		    
-				if(!(p1.getPid().equals(null)) && !(doctorAssigned.equals(null)))
+			Patient p1=(Patient) dao.searchId("patient",pid);
+			String doctorAssigned = getDoctorAssigned(p1);
+
+			if(!(p1.getPid().equals(null)) && !(doctorAssigned.equals(null)))
 				{
 					ModelAndView mv= new ModelAndView();
 					mv.setViewName("doctor/PatientDopdDetailsView");
@@ -94,5 +91,13 @@ public class PatientDopdDetailsController
 				return mv;
 			}
 	}
-	
+
+	private String getDoctorAssigned(Patient p1) {
+		infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+ p1);
+
+		String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
+		infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+doctorAssigned);
+		return doctorAssigned;
+	}
+
 }

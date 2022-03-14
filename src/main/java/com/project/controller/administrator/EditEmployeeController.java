@@ -23,11 +23,11 @@ import com.project.entity.Name;
 public class EditEmployeeController 
 {
 	@Autowired
-	PatientPrescriptionDao dao;
+	PatientPrescriptionDao patientPrescriptionDao;
 	@Autowired
-	EmployeeDetailsDao dao1;
+	EmployeeDetailsDao employeeDetailsDao;
 	@Autowired
-	EditEmployeeDao dao2;
+	EditEmployeeDao editEmployeeDao;
 	@Autowired
 	LoginDao infoLog;
 	
@@ -40,14 +40,14 @@ public class EditEmployeeController
 			
 			String eid= l.getId();
 			
-			Employee e= dao1.show(eid);
+			Employee e= (Employee) employeeDetailsDao.show("employee",eid);
 			infoLog.logActivities("returned to EditEmployeeController-editView: got= "+e);
 			
-				if(! e.getEid().equals(null))
+				if(! e.getEmployeeId().equals(null))
 				{
 					ModelAndView mv= new ModelAndView();
 					mv.setViewName("EditPersonalDetails");
-					mv.addObject("prescriptionsCount", dao.prescriptionPrintCount());  //for receptionist only
+					mv.addObject("prescriptionsCount", patientPrescriptionDao.prescriptionPrintCount());  //for receptionist only
 					mv.addObject("employee",e);
 					return mv;
 				}
@@ -69,7 +69,7 @@ public class EditEmployeeController
 	{
 		ModelAndView mv= new ModelAndView();
 		mv.setViewName("administrator/EditEmployeeDetailsView");
-		mv.addObject("employee", dao1.show(eid));
+		mv.addObject("employee", employeeDetailsDao.show("employee",eid));
 		return mv;
 	}
 	
@@ -81,14 +81,14 @@ public class EditEmployeeController
 			Address a1= new Address(residentialAddress, permanentAddress);
 			infoLog.logActivities("in EditEmployeeController-edit: got= "+eid+" "+n1+" "+birthdate+" "+gender+" "+email+" "+mobileNo+" "+adharNo+" "+country+" "+state+" "+city+" "+a1+" "+role+" "+qualification+" "+specialization);
 			
-			int res=dao2.edit(eid,n1,birthdate,gender,email,mobileNo,adharNo,country,state,city,a1,role,qualification,specialization);
+			int res=editEmployeeDao.edit(eid,n1,birthdate,gender,email,mobileNo,adharNo,country,state,city,a1,role,qualification,specialization);
 			infoLog.logActivities("returned to EditEmployeeController-edit: got= "+res);
 			
 			if(res==1)
 			{
 				ModelAndView mv= new ModelAndView();
 				mv.setViewName("successPage");
-				mv.addObject("prescriptionsCount", dao.prescriptionPrintCount());  //for receptionist only
+				mv.addObject("prescriptionsCount", patientPrescriptionDao.prescriptionPrintCount());  //for receptionist only
 				return mv;
 			}
 			else

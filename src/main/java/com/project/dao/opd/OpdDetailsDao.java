@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.transaction.Transactional;
 
+import com.project.entity.OpdDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -43,8 +44,8 @@ public class OpdDetailsDao
 			    	_OpdRecord r1= new _OpdRecord();
 			    	r1.setDoctorId(opd1.getDoctorId());
 			    	r1.setDoctorName(searchDoctorAssigned(opd1.getDoctorId()));
-			    	r1.setPid(opd1.getPid());
-			    	r1.setPatientName(searchPatientName(opd1.getPid()));
+			    	r1.setPid(opd1.getPatientId());
+			    	r1.setPatientName(searchPatientName(opd1.getPatientId()));
 			    	
 			    	opdQueue.add(r1);
 			    }
@@ -108,6 +109,11 @@ public class OpdDetailsDao
 			  return null;
 			}
 		return dname;
+	}
+
+	public void savePatientOpdDetails(Session session, OpdDetails patientcase, int opdid){
+		patientcase.setOpdid(opdid);
+		session.save(patientcase);
 	}
 
 }

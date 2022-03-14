@@ -45,7 +45,7 @@ public class AddPatientDao
 			    for(Employee e: l1)
 			    {
 			    	String[] temp= new String[4];
-			    	temp[0]=e.getEid();
+			    	temp[0]=e.getEmployeeId();
 			    	temp[1]=e.getName().getFirstName();
 			    	temp[2]=e.getName().getMiddleName();
 			    	temp[3]=e.getName().getLastName();

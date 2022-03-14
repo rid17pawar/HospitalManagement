@@ -44,7 +44,7 @@ public class AddOpdDao
 			if(i==1)
 			{
 				Query q1= session.createQuery("select count(pid) from Opd where pid=:p AND status= :s");	//HQL use classname not tablename
-				q1.setParameter("p", q.getPid());
+				q1.setParameter("p", q.getPatientId());
 				q1.setParameter("s", 1);
 				Long o=(Long) q1.uniqueResult();
 				if(o==0)
