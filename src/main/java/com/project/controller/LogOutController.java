@@ -21,11 +21,8 @@ public class LogOutController
 	{
 		try
 		{
-			infoLog.logActivities("in LogOutController-removeUserInfo: ");
-			HttpSession session= request.getSession();
-			infoLog.logActivities(session.getId());
-			session.invalidate();
-			
+			invalidateSession(request);
+
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("LoginView");
 			mv.addObject("status", "true");
@@ -39,5 +36,12 @@ public class LogOutController
 			mv.addObject("error",e);
 			return mv;
 		}
+	}
+
+	private void invalidateSession(HttpServletRequest request) {
+		infoLog.logActivities("in LogOutController-removeUserInfo: ");
+		HttpSession session= request.getSession();
+		infoLog.logActivities(session.getId());
+		session.invalidate();
 	}
 }

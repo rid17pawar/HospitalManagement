@@ -36,7 +36,7 @@ public class SearchEmployeeDao
 				Employee temp= (Employee) q1.uniqueResult();
 				infoLog.logActivities(""+temp);
 		
-				if(temp.getEid()!=null)
+				if(temp.getEmployeeId()!=null)
 					infoLog.logActivities("employee found");
 				return temp;
 			}
@@ -60,7 +60,7 @@ public class SearchEmployeeDao
 				Employee temp= (Employee) q1.uniqueResult();
 				infoLog.logActivities(""+temp);
 		
-				if(temp.getEid()!=null)
+				if(temp.getEmployeeId()!=null)
 					infoLog.logActivities("employee found");
 				return temp;
 			}
@@ -83,7 +83,7 @@ public class SearchEmployeeDao
 				Employee temp= (Employee) q1.uniqueResult();
 				infoLog.logActivities(""+temp);
 		
-				if(temp.getEid()!=null)
+				if(temp.getEmployeeId()!=null)
 					infoLog.logActivities("employee found");
 				return temp;
 			}
@@ -106,7 +106,7 @@ public class SearchEmployeeDao
 				Employee temp= (Employee) q1.uniqueResult();
 				infoLog.logActivities(""+temp);
 		
-				if(temp.getEid()!=null)
+				if(temp.getEmployeeId()!=null)
 					infoLog.logActivities("employee found");
 				return temp;
 			}
