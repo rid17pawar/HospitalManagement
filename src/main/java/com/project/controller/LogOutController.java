@@ -25,7 +25,7 @@ public class LogOutController
 			HttpSession session= request.getSession();
 			infoLog.logActivities(session.getId());
 			session.invalidate();
-			
+
 			ModelAndView mv= new ModelAndView();
 			mv.setViewName("LoginView");
 			mv.addObject("status", "true");

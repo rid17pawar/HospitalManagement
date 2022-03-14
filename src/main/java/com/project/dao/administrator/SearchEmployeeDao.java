@@ -1,5 +1,6 @@
 package com.project.dao.administrator;
 
+import com.project.dao.person.SearchPersonDao;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,107 +14,7 @@ import com.project.entity.Employee;
 import com.project.entity.Login;
 
 @Component
-public class SearchEmployeeDao 
+public class SearchEmployeeDao extends SearchPersonDao
 {
-	@Autowired
-	private SessionFactory sf;	//hibernate configuration in springMVC-servlet.xml file
-	
-	@Autowired
-	LoginDao infoLog;
-	
-	//to manage transaction by itself
-	@Transactional
-	public Employee searchName(String firstName, String lastName) 
-	{
-		Session session= sf.getCurrentSession();
-		Query q1=session.createQuery("from Employee where firstName= :f AND lastName= :l AND status=:s");
-		q1.setParameter("f", firstName);
-		q1.setParameter("l", lastName);
-		q1.setParameter("s", 1);
-		
-		try 
-		{
-				Employee temp= (Employee) q1.uniqueResult();
-				infoLog.logActivities(""+temp);
-		
-				if(temp.getEid()!=null)
-					infoLog.logActivities("employee found");
-				return temp;
-			}
-			catch(Exception e)
-			{ 
-				infoLog.logActivities("error in finding employee records "+e);
-			  return null;
-			}
-			
-	}
 
-	@Transactional
-	public Employee searchId(String id) 
-	{
-		Session session= sf.getCurrentSession();
-		Query q1=session.createQuery("from Employee where eid= :i AND status=:s");
-		q1.setParameter("i", id);
-		q1.setParameter("s", 1);
-			try 
-			{
-				Employee temp= (Employee) q1.uniqueResult();
-				infoLog.logActivities(""+temp);
-		
-				if(temp.getEid()!=null)
-					infoLog.logActivities("employee found");
-				return temp;
-			}
-			catch(Exception e)
-			{ 
-				infoLog.logActivities("error in finding employee records "+e);
-			  return null;
-			}
-	}
-
-	@Transactional
-	public Employee searchMobileNo(String mobileNo) 
-	{
-		Session session= sf.getCurrentSession();
-		Query q1=session.createQuery("from Employee where mobileno= :i AND status=:s");
-		q1.setParameter("i", mobileNo);
-		q1.setParameter("s", 1);
-		    try 
-		    {
-				Employee temp= (Employee) q1.uniqueResult();
-				infoLog.logActivities(""+temp);
-		
-				if(temp.getEid()!=null)
-					infoLog.logActivities("employee found");
-				return temp;
-			}
-			catch(Exception e)
-			{ 
-				infoLog.logActivities("error in finding employee records "+e);
-			  return null;
-			}
-	}
-	
-	@Transactional
-	public Employee searchAadharNo(String aadharNo) 
-	{
-		Session session= sf.getCurrentSession();
-		Query q1=session.createQuery("from Employee where adharno= :i AND status=:s");
-		q1.setParameter("i", aadharNo);
-		q1.setParameter("s", 1);
-		    try 
-		    {
-				Employee temp= (Employee) q1.uniqueResult();
-				infoLog.logActivities(""+temp);
-		
-				if(temp.getEid()!=null)
-					infoLog.logActivities("employee found");
-				return temp;
-			}
-			catch(Exception e)
-			{ 
-				infoLog.logActivities("error in finding employee records "+e);
-			  return null;
-			}
-	}
 }
