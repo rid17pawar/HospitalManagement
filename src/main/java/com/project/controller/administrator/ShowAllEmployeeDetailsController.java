@@ -41,7 +41,7 @@ public class ShowAllEmployeeDetailsController
 	{
 		try {
 			infoLog.logActivities("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: got "+eid);
-			Employee l=(Employee) dao2.show(eid);
+			Employee l=(Employee) dao2.show("employee",eid);
 			if(! l.equals(null))
 			{
 				ModelAndView mv= new ModelAndView();

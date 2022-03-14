@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.dao.opd.OpdPrescriptionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,9 @@ public class PatientPrescriptionController
 	
 	@Autowired
 	DeleteOpdDao dao1;
+
+	@Autowired
+	OpdPrescriptionDao prescriptionDao;
 	
 	@Autowired
 	PatientHistoryDao dao2;
@@ -105,7 +109,7 @@ public class PatientPrescriptionController
 		{
 			infoLog.logActivities("in PatientPrescriptionController-delete: got="+pid);
 			
-			int i=dao1.prescriptionPrintDone(pid);
+			int i=prescriptionDao.prescriptionPrintDone(pid);
 			infoLog.logActivities("returned to PatientPrescriptionController-delete: got="+i);
 			
 			if(i==1)

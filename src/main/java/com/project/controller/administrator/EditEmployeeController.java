@@ -40,7 +40,7 @@ public class EditEmployeeController
 			
 			String eid= l.getId();
 			
-			Employee e= dao1.show(eid);
+			Employee e= (Employee) dao1.show("employee",eid);
 			infoLog.logActivities("returned to EditEmployeeController-editView: got= "+e);
 			
 				if(! e.getEid().equals(null))
@@ -69,7 +69,7 @@ public class EditEmployeeController
 	{
 		ModelAndView mv= new ModelAndView();
 		mv.setViewName("administrator/EditEmployeeDetailsView");
-		mv.addObject("employee", dao1.show(eid));
+		mv.addObject("employee", dao1.show("employee",eid));
 		return mv;
 	}
 	
