@@ -39,7 +39,7 @@ public class EditPatientController
 		try {
 			infoLog.logActivities("in EditPatientController-edit: got= "+pid);
 			
-			Patient temp=  dao1.show(pid);
+			Patient temp=  (Patient) dao1.show("patient",pid);
 			infoLog.logActivities("returned to EditPatientController-edit: got= "+temp);
 			
 			String doctorname=dao3.searchDoctorAssigned(temp.getDoctorId());
