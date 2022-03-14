@@ -44,8 +44,8 @@ public class OpdDetailsDao
 			    	_OpdRecord r1= new _OpdRecord();
 			    	r1.setDoctorId(opd1.getDoctorId());
 			    	r1.setDoctorName(searchDoctorAssigned(opd1.getDoctorId()));
-			    	r1.setPid(opd1.getPatientId());
-			    	r1.setPatientName(searchPatientName(opd1.getPatientId()));
+			    	r1.setPid(opd1.getPid());
+			    	r1.setPatientName(searchPatientName(opd1.getPid()));
 			    	
 			    	opdQueue.add(r1);
 			    }

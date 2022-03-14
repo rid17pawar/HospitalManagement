@@ -36,7 +36,7 @@ public class PersonalInfoController
 			Employee e1=dao.info(l.getId());
 			infoLog.logActivities("retuned to PersonalInfoController-info: got= "+e1);
 			
-				if(! e1.getEmployeeId().equals(null))
+				if(! e1.getEid().equals(null))
 				{
 					ModelAndView mv= new ModelAndView();
 					mv.setViewName("PersonalInfoView");

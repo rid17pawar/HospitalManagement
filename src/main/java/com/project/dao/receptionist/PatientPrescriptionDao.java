@@ -69,10 +69,10 @@ public class PatientPrescriptionDao
 			    for(Opd o: l1)
 			    {
 			    	String[] temp= new String[3];
-			    	temp[0]=o.getPatientId();
+			    	temp[0]=o.getPid();
 			    	
 			    	q1= session.createQuery("from Patient where pid= :i");	//HQL use classname not tablename
-					q1.setParameter("i", o.getPatientId());
+					q1.setParameter("i", o.getPid());
 			    	Patient p=(Patient) q1.uniqueResult();
 			    	temp[1]=p.getName().getFirstName()+" "+p.getName().getMiddleName()+" "+p.getName().getLastName();
 			    	strarr.add(temp);

@@ -42,9 +42,9 @@ public class AddEmployeeDao
 			session.save(e);
 			
 			//storing info in Login table
-			String id=e.getEmployeeId();
+			String id=e.getEid();
 			String role=e.getRole();
-			String username=e.getEmployeeId();
+			String username=e.getEid();
 
 			String password=BCrypt.hashpw(e.getAdharNo()+"", BCrypt.gensalt());
 			infoLog.logActivities("aadhar no= "+e.getAdharNo()+", generated hash= "+password);
@@ -53,7 +53,14 @@ public class AddEmployeeDao
 			session.save(l);
 			
 			//incrementing eid of idgenerate table contents
-			updateEmployeeIdInIdGenerate(session);
+			Query q1=session.createQuery(" from IdGenerate");
+			IdGenerate temp= (IdGenerate) q1.uniqueResult();
+			int eid=temp.getEid();
+			eid++;
+			q1=session.createQuery("update IdGenerate set eid= :i");
+			q1.setParameter("i", eid);
+			int res= q1.executeUpdate();
+			infoLog.logActivities("incremented eid "+res);
 			return true;
 		}
 		catch(Exception ex)
@@ -61,16 +68,5 @@ public class AddEmployeeDao
 			infoLog.logActivities("in AddEmployeeDao-add: "+ex);
 			return false;
 		}
-	}
-
-	private void updateEmployeeIdInIdGenerate(Session session) {
-		Query q1= session.createQuery(" from IdGenerate");
-		IdGenerate temp= (IdGenerate) q1.uniqueResult();
-		int eid=temp.getEid();
-		eid++;
-		q1= session.createQuery("update IdGenerate set eid= :i");
-		q1.setParameter("i", eid);
-		int res= q1.executeUpdate();
-		infoLog.logActivities("incremented eid "+res);
 	}
 }

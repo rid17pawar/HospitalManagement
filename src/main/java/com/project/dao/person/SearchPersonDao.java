@@ -28,7 +28,7 @@ public class SearchPersonDao {
                 Employee temp = (Employee) q1.uniqueResult();
                 infoLog.logActivities("" + temp);
 
-                if (temp.getEmployeeId() != null)
+                if (temp.getEid() != null)
                     infoLog.logActivities("employee found");
                 return temp;
             } catch (Exception e) {
@@ -68,7 +68,7 @@ public class SearchPersonDao {
                 Employee temp = (Employee) q1.uniqueResult();
                 infoLog.logActivities("" + temp);
 
-                if (temp.getEmployeeId() != null)
+                if (temp.getEid() != null)
                     infoLog.logActivities("employee found");
                 return temp;
             } catch (Exception e) {
@@ -111,7 +111,7 @@ public class SearchPersonDao {
                 Employee temp= (Employee) q1.uniqueResult();
                 infoLog.logActivities(""+temp);
 
-                if(temp.getEmployeeId()!=null)
+                if(temp.getEid()!=null)
                     infoLog.logActivities("employee found");
                 return temp;
             }
@@ -154,7 +154,7 @@ public class SearchPersonDao {
                 Employee temp= (Employee) q1.uniqueResult();
                 infoLog.logActivities(""+temp);
 
-                if(temp.getEmployeeId()!=null)
+                if(temp.getEid()!=null)
                     infoLog.logActivities("employee found");
                 return temp;
             }
