@@ -19,7 +19,7 @@ public class Opd
 	//to store date i.e. yyyy-mm-dd
 	@Temporal(TemporalType.DATE)
 	private Date visitDate;
-	private String pid;
+	private String patientId;
 	private String doctorId;  
 	private int status;
 	
@@ -28,9 +28,9 @@ public class Opd
 	
 	Opd(){}
 		
-	public Opd(String pid, String doctorId, int status) {
+	public Opd(String patientId, String doctorId, int status) {
 		super();
-		this.pid = pid;
+		this.patientId = patientId;
 		this.doctorId = doctorId;
 		this.status = status;
 	}
@@ -47,8 +47,8 @@ public class Opd
 	public Date getVisitDate() {
 		return visitDate;
 	}
-	public String getPid() {
-		return pid;
+	public String getPatientId() {
+		return patientId;
 	}
 	public String getDoctorId() {
 		return doctorId;
@@ -59,7 +59,7 @@ public class Opd
 	
 	@Override
 	public String toString() {
-		return "Opd [opdId=" + opdId + ", visitDate=" + visitDate + ", pid=" + pid + ", doctorId=" + doctorId + ", status="
+		return "Opd [opdId=" + opdId + ", visitDate=" + visitDate + ", patientId=" + patientId + ", doctorId=" + doctorId + ", status="
 				+ status + "]";
 	}
 	

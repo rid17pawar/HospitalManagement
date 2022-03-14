@@ -41,7 +41,7 @@ public class SearchEmployeeController
 		Employee e1= dao.searchName(firstName,lastName);
 		infoLog.logActivities("searchName"+e1);
 	    try {
-			if(e1.getEid()!=null)
+			if(e1.getEmployeeId()!=null)
 			{
 
 				ModelAndView mv= new ModelAndView();
@@ -65,7 +65,7 @@ public class SearchEmployeeController
 		Employee e1= dao.searchId(id);
 		infoLog.logActivities(""+e1);
 	    try {
-			if(e1.getEid()!=null)
+			if(e1.getEmployeeId()!=null)
 			{
 
 				ModelAndView mv= new ModelAndView();
@@ -89,7 +89,7 @@ public class SearchEmployeeController
 		Employee e1= dao.searchMobileNo(mobileNo);
 		infoLog.logActivities(""+e1);
 	    try {
-			if(e1.getEid()!=null)
+			if(e1.getEmployeeId()!=null)
 			{
 
 				ModelAndView mv= new ModelAndView();
@@ -113,7 +113,7 @@ public class SearchEmployeeController
 		Employee e1= dao.searchAadharNo(aadharNo);
 		infoLog.logActivities(""+e1);
 	    try {
-			if(e1.getEid()!=null)
+			if(e1.getEmployeeId()!=null)
 			{
 
 				ModelAndView mv= new ModelAndView();
