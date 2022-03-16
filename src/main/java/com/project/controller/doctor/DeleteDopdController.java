@@ -3,6 +3,7 @@ package com.project.controller.doctor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,8 @@ public class DeleteDopdController
 	DeleteOpdDao dao1;
 	@Autowired
 	DopdDetailsDao dao2;
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value = "/deleteDopd.html", method = RequestMethod.POST)
 	public ModelAndView delete(@RequestParam("pid")String pid, HttpServletRequest request)
@@ -32,10 +35,7 @@ public class DeleteDopdController
 		HttpSession session= request.getSession();
 		Login l=(Login) session.getAttribute("userInfo");
 		String doctorId= l.getId();
-		
-		ModelAndView mv= new ModelAndView();
-		mv.setViewName("doctor/DopdDetailsView");
-		mv.addObject("patientsQueue", dao2.dopdQueue(doctorId));
-		return mv;
+
+		return modelAndViewUtility.returnModelAndView("doctor/DopdDetailsView","patientsQueue", dao2.dopdQueue(doctorId));
 	}
 }

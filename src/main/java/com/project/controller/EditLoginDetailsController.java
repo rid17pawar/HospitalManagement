@@ -3,6 +3,7 @@ package com.project.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,24 +24,21 @@ public class EditLoginDetailsController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	 
 	@RequestMapping(value="/editView.html")
 	public ModelAndView editLoginView()
 	{
 		try
 		{
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("EditLoginDetailsView");
-			mv.addObject("status", "true");
-			return mv;
+			return modelAndViewUtility.returnModelAndView("EditLoginDetailsView","status", "true");
 		}
 		catch(Exception e)
 		{
 			infoLog.logActivities("in EditLoginDetailsController-editLoginView: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	
@@ -60,10 +58,8 @@ public class EditLoginDetailsController
 					Login l1=new Login(l.getId(),l.getRole(),username,password);
 					session.removeAttribute("userInfo");
 					session.setAttribute("userInfo",l1);
-					
-					ModelAndView mv= new ModelAndView();
-					mv.setViewName("welcome"); 
-					return mv;
+
+					return modelAndViewUtility.returnModelAndView("welcome",null,null);
 				}
 				else
 				{   throw new Exception();  }
@@ -71,11 +67,8 @@ public class EditLoginDetailsController
 			}
 			catch(Exception e)
 			{
-				infoLog.logActivities("in EditLoginDetailsController-editLoginView: "+e);	
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("EditLoginDetailsView");
-				mv.addObject("status", "false");
-				return mv;
+				infoLog.logActivities("in EditLoginDetailsController-editLoginView: "+e);
+				return modelAndViewUtility.returnModelAndView("EditLoginDetailsView","status", "false");
 			} 
 			
 	}

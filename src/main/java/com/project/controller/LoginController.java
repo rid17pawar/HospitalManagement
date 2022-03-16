@@ -3,6 +3,7 @@ package com.project.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,24 +26,21 @@ public class LoginController
 	
 	@Autowired
 	UsersInSystemDao dao2;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	 
 	@RequestMapping(value="/login.html", method = RequestMethod.POST)
 	public ModelAndView view()
 	{
 		try
 		{
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("LoginView");
-			mv.addObject("status", "true");
-			return mv;
+			return modelAndViewUtility.returnModelAndView("LoginView","status", "true");
 		}
 		catch(Exception e)
 		{
-			dao.logActivities("LoginController-view: "+e);	
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			dao.logActivities("LoginController-view: "+e);
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	
@@ -82,11 +80,8 @@ public class LoginController
 			    }
 			catch(Exception e)
 			{
-				dao.logActivities("LoginController-validate: "+e);	
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("LoginView");
-				mv.addObject("status", "false");
-				return mv;
+				dao.logActivities("LoginController-validate: "+e);
+				return modelAndViewUtility.returnModelAndView("LoginView","status", "false");
 			}
 	} 
 	
