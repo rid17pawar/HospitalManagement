@@ -19,124 +19,83 @@ public class SearchPersonDao {
     @Transactional
     public Object searchId(String type,Object id)
     {
+        Session session = sf.getCurrentSession();
+        Query q1;
         if(type.toLowerCase().equals("employee")) {
-            Session session = sf.getCurrentSession();
-            Query q1 = session.createQuery("from Employee where eid= :i AND status=:s");
-            q1.setParameter("i", id);
+            q1 = session.createQuery("from Employee where eid= :i AND status=:s");
             q1.setParameter("s", 1);
-            try {
-                Employee temp = (Employee) q1.uniqueResult();
-                infoLog.logActivities("" + temp);
+        }else{
+            q1=session.createQuery("from Patient where pid= :id");
+        }
+        q1.setParameter("i", id);
 
-                if (temp.getEid() != null)
-                    infoLog.logActivities("employee found");
-                return temp;
-            } catch (Exception e) {
-                infoLog.logActivities("error in finding employee records " + e);
-                return null;
-            }
-        }else {
-            infoLog.logActivities("in SearchPatientDao-searchId: got= "+id);
+        try {
+            Object personObject = (Object) q1.uniqueResult();
+            infoLog.logActivities("" + personObject);
 
-            Session session= sf.getCurrentSession();
-            Query q1=session.createQuery("from Patient where pid= :id");
-            q1.setParameter("id", id);
-
-            try
-            {
-                Patient temp= (Patient) q1.uniqueResult();
-                infoLog.logActivities("in SearchPatientDao-searchId: found= "+temp);
-                return temp;
-            }
-            catch(Exception e)
-            {
-                infoLog.logActivities("in SearchPatientDao-searchId: "+e);
-                return null;
-            }
+            if (personObject != null)
+                infoLog.logActivities("person found");
+            return personObject;
+        } catch (Exception e) {
+            infoLog.logActivities("error in finding person records " + e);
+            return null;
         }
     }
 
     @Transactional
     public Object searchMobileNo(String type,Object mobileNo)
     {
+        Session session = sf.getCurrentSession();
+        Query q1;
+
         if(type.toLowerCase().equals("employee")) {
-            Session session = sf.getCurrentSession();
-            Query q1 = session.createQuery("from Employee where mobileno= :i AND status=:s");
-            q1.setParameter("i", mobileNo);
+            q1 = session.createQuery("from Employee where mobileno= :i AND status=:s");
             q1.setParameter("s", 1);
-            try {
-                Employee temp = (Employee) q1.uniqueResult();
-                infoLog.logActivities("" + temp);
+        }else{
+            q1=session.createQuery("from Patient where mobileNo= :no");
+        }
+        q1.setParameter("i", mobileNo);
 
-                if (temp.getEid() != null)
-                    infoLog.logActivities("employee found");
-                return temp;
-            } catch (Exception e) {
-                infoLog.logActivities("error in finding employee records " + e);
-                return null;
-            }
-        }else {
-            infoLog.logActivities("in SearchPatientDao-searchMobileNo: got= "+mobileNo);
+        try {
+            Object personObject = (Object) q1.uniqueResult();
+            infoLog.logActivities("" + personObject);
 
-            Session session= sf.getCurrentSession();
-            Query q1=session.createQuery("from Patient where mobileNo= :no");
-            q1.setParameter("no", (Long)mobileNo);
-
-            try
-            {
-                Patient temp= (Patient) q1.uniqueResult();
-                infoLog.logActivities("in SearchPatientDao-searchMobileNo: found= "+temp);
-                return temp;
-            }
-            catch(Exception e)
-            {
-                infoLog.logActivities("in SearchPatientDao-searchMobileNo: "+e);
-                return null;
-            }
+            if (personObject != null)
+                infoLog.logActivities("person found");
+            return personObject;
+        } catch (Exception e) {
+            infoLog.logActivities("error in finding person records " + e);
+            return null;
         }
     }
 
     @Transactional
     public Object searchName(String type,String firstName, String lastName)
     {
+        Session session= sf.getCurrentSession();
+        Query q1;
         if(type.toLowerCase().equals("employee")) {
-            Session session= sf.getCurrentSession();
-            Query q1=session.createQuery("from Employee where firstName= :f AND lastName= :l AND status=:s");
-            q1.setParameter("f", firstName);
-            q1.setParameter("l", lastName);
+            q1 = session.createQuery("from Employee where firstName= :f AND lastName= :l AND status=:s");
             q1.setParameter("s", 1);
-
-            try
-            {
-                Employee temp= (Employee) q1.uniqueResult();
-                infoLog.logActivities(""+temp);
-
-                if(temp.getEid()!=null)
-                    infoLog.logActivities("employee found");
-                return temp;
-            }
-            catch(Exception e)
-            {
-                infoLog.logActivities("error in finding employee records "+e);
-                return null;
-            }
+        }else{
+            q1 = session.createQuery("from Patient where firstName= :f AND lastName= :l");
         }
-        else {
-            infoLog.logActivities("in SearchPatientDao-searchName: got= " + firstName + " " + lastName);
+        q1.setParameter("f", firstName);
+        q1.setParameter("l", lastName);
 
-            Session session = sf.getCurrentSession();
-            Query q1 = session.createQuery("from Patient where firstName= :f AND lastName= :l");
-            q1.setParameter("f", firstName);
-            q1.setParameter("l", lastName);
+        try
+        {
+            Object personObject= (Object) q1.uniqueResult();
+            infoLog.logActivities(""+personObject);
 
-            try {
-                Patient temp = (Patient) q1.uniqueResult();
-                infoLog.logActivities("in SearchPatientDao-searchName: found= " + temp);
-                return temp;
-            } catch (Exception e) {
-                infoLog.logActivities("in SearchPatientDao-searchName: " + e);
-                return null;
-            }
+            if(personObject!=null)
+                infoLog.logActivities("person found");
+            return personObject;
+        }
+        catch(Exception e)
+        {
+            infoLog.logActivities("error in finding person records "+e);
+            return null;
         }
 
     }
@@ -144,42 +103,32 @@ public class SearchPersonDao {
     @Transactional
     public Object searchAadharNo(String type,Object aadharNo)
     {
+        Session session= sf.getCurrentSession();
+        Query q1;
+
         if(type.toLowerCase().equals("employee")) {
-            Session session= sf.getCurrentSession();
-            Query q1=session.createQuery("from Employee where adharno= :i AND status=:s");
-            q1.setParameter("i", aadharNo);
+            q1 = session.createQuery("from Employee where adharno= :i AND status=:s");
             q1.setParameter("s", 1);
-            try
-            {
-                Employee temp= (Employee) q1.uniqueResult();
-                infoLog.logActivities(""+temp);
-
-                if(temp.getEid()!=null)
-                    infoLog.logActivities("employee found");
-                return temp;
-            }
-            catch(Exception e)
-            {
-                infoLog.logActivities("error in finding employee records "+e);
-                return null;
-            }
+        }else{
+            q1 = session.createQuery("from Patient where adharNo= :no");
         }
-        else {
-            infoLog.logActivities("in SearchPatientDao-searchAdharNo: got= " + aadharNo);
+        q1.setParameter("i", aadharNo);
 
-            Session session = sf.getCurrentSession();
-            Query q1 = session.createQuery("from Patient where adharNo= :no");
-            q1.setParameter("no",(Long) aadharNo);
+        try
+        {
+            Object personObject= (Object) q1.uniqueResult();
+            infoLog.logActivities(""+personObject);
 
-            try {
-                Patient temp = (Patient) q1.uniqueResult();
-                infoLog.logActivities("in SearchPatientDao-searchAdharNo: found= " + temp);
-                return temp;
-            } catch (Exception e) {
-                infoLog.logActivities("in SearchPatientDao-searchAdharNo: " + e);
-                return null;
-            }
+            if(personObject!=null)
+                infoLog.logActivities("person found");
+            return personObject;
+        }
+        catch(Exception e)
+        {
+            infoLog.logActivities("error in finding person records "+e);
+            return null;
         }
     }
 
 }
+

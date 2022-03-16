@@ -21,39 +21,29 @@ public class PersonDetailsDao {
     @Transactional
     public Object show(String type,String id)
     {
+        infoLog.logActivities("in PersonDetailsDao-show: got= "+id);
+
+        Session session= sf.getCurrentSession();
+
+        Query q1;
         if(type.toLowerCase().equals("employee")) {
-            infoLog.logActivities("in EmployeeDetailsDao-show: got= "+id);
+            q1 = session.createQuery("from Employee where eid= :id");
+        }else{
+            q1 = session.createQuery("from Patient where pid= :id");
+        }
+        q1.setParameter("id", id);
 
-            Session session= sf.getCurrentSession();
-            Query q1=session.createQuery("from Employee where eid= :id");
-            q1.setParameter("id", id);
-
-            try
-            {
-                Employee temp= (Employee) q1.uniqueResult();
-                infoLog.logActivities("in EmployeeDetailsDao-show: found= "+temp);
-                return temp;
-            }
-            catch(Exception e)
-            {
-                infoLog.logActivities("in EmployeeDetailsDao-show: "+e);
-                return null;
-            }
-        }else {
-            infoLog.logActivities("in PatientDetailsDao-show: got= " + id);
-
-            Session session = sf.getCurrentSession();
-            Query q1 = session.createQuery("from Patient where pid= :id");
-            q1.setParameter("id", id);
-
-            try {
-                Patient temp = (Patient) q1.uniqueResult();
-                infoLog.logActivities("in PatientDetailsDao-show: found= " + temp);
-                return temp;
-            } catch (Exception e) {
-                infoLog.logActivities("in PatientDetailsDao-show: " + e);
-                return null;
-            }
+        try
+        {
+            Object personObject= (Object) q1.uniqueResult();
+            infoLog.logActivities("in PersonDetailsDao-show: found= "+personObject);
+            return personObject;
+        }
+        catch(Exception e)
+        {
+            infoLog.logActivities("in PersonDetailsDao-show: "+e);
+            return null;
         }
     }
 }
+
