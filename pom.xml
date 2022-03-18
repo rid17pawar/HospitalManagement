@@ -5,6 +5,10 @@
   <artifactId>HospitalManagement</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
+	</properties>
   <name>HospitalManagement Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
@@ -80,7 +84,14 @@
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-tx</artifactId>
 		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
-	</dependency> 
+	</dependency>
+
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <version>3.0.1</version>
+		  <scope>provided</scope>
+	  </dependency>
 	
 <!-- to store and read image file -->
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
@@ -99,8 +110,20 @@
 	
 	
   </dependencies>
-    
-  <build>
-    <finalName>HospitalManagement</finalName>
-  </build>
+
+	<build>
+		<finalName>HospitalManagement</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>

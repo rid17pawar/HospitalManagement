@@ -3,18 +3,17 @@ package com.project.entity;
 //Not annotated using @Entity bcoz we dont want to store its data in database
 public class _OpdRecord
 {
-	String doctorId;
-	String doctorName;
+	Doctor doctor;
 	String pid;
 	String patientName;
 	
 	public _OpdRecord() {}
 	
 	public String getDoctorId() {
-		return doctorId;
+		return doctor.getDoctorId();
 	}
 	public String getDoctorName() {
-		return doctorName;
+		return doctor.getName();
 	}
 	public String getPid() {
 		return pid;
@@ -23,10 +22,10 @@ public class _OpdRecord
 		return patientName;
 	}
 	public void setDoctorId(String doctorId) {
-		this.doctorId = doctorId;
+		this.doctor.setDoctorId(doctorId);
 	}
 	public void setDoctorName(String doctorName) {
-		this.doctorName = doctorName;
+		this.doctor.setName(doctorName);
 	}
 	public void setPid(String pid) {
 		this.pid = pid;
@@ -36,7 +35,7 @@ public class _OpdRecord
 	}
 	@Override
 	public String toString() {
-		return "_OpdRecord [doctorId=" + doctorId + ", doctorName=" + doctorName + ", pid=" + pid + ", patientName="
+		return "_OpdRecord [doctorId=" + doctor.getDoctorId() + ", doctorName=" + doctor.getName() + ", pid=" + pid + ", patientName="
 				+ patientName + "]";
 	}
 	
