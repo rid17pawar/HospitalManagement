@@ -84,7 +84,14 @@
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-tx</artifactId>
 		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
-	</dependency> 
+	</dependency>
+
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <version>3.0.1</version>
+		  <scope>provided</scope>
+	  </dependency>
 	
 <!-- to store and read image file -->
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
