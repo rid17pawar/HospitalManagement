@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.transaction.Transactional;
 
+import com.project.dao.opd.OpdDetailsDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -23,6 +24,9 @@ public class patientObservePrescribeDao
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	OpdDetailsDao opdDetailsDao;
 	
 	@Transactional
 	public int add(OpdDetails patientcase,String pid) 
@@ -37,14 +41,12 @@ public class patientObservePrescribeDao
 		{
 			Opd opd= (Opd) q1.uniqueResult();
 			infoLog.logActivities(""+opd);
-		
-				if(opd.getOpdId()!=0)
-				{				
-				patientcase.setOpdid(opd.getOpdId());
-				
-				session.save(patientcase);
-				
-				int opdid=opd.getOpdId();
+
+			int opdid=opd.getOpdId();
+				if(opdid!=0)
+				{
+					opdDetailsDao.savePatientOpdDetails(session,patientcase,opdid);
+
 				return opdid;
 				}	
 				else

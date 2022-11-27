@@ -1,5 +1,6 @@
 package com.project.controller.administrator;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,9 @@ public class DeleteEmployeeController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping("/deleteEmployee.html")
 	public ModelAndView delete(@RequestParam("eid")String eid)
@@ -30,8 +34,7 @@ public class DeleteEmployeeController
 			if(res==1)
 			{
 				ModelAndView mv= new ModelAndView();
-				mv.setViewName("successPage");
-				return mv;
+				return modelAndViewUtility.returnModelAndView("successPage",null,null);
 			}
 			else
 			{   throw new Exception();  }
@@ -39,10 +42,7 @@ public class DeleteEmployeeController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in DeleteEmployeeController-delete: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 			
 	}

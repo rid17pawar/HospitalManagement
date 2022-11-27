@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.transaction.Transactional;
 
+import com.project.entity.OpdDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -108,6 +109,11 @@ public class OpdDetailsDao
 			  return null;
 			}
 		return dname;
+	}
+
+	public void savePatientOpdDetails(Session session, OpdDetails patientcase, int opdid){
+		patientcase.setOpdid(opdid);
+		session.save(patientcase);
 	}
 
 }

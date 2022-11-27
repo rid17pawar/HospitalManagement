@@ -1,5 +1,6 @@
 package com.project.controller.opd;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ public class AddOpdController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value = "/addOpd.html", method =RequestMethod.POST)
 	public ModelAndView add(@RequestParam("pid")String pid)
@@ -43,26 +47,17 @@ public class AddOpdController
 				
 				if(b==1) 
 				{
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("successPage");
-				mv.addObject("prescriptionsCount", dao1.prescriptionPrintCount());  //for receptionist only
-				return mv;
+					return modelAndViewUtility.returnModelAndView("successPage","prescriptionsCount", dao1.prescriptionPrintCount());
 				}
 				else if(b==2)
 				{
 					infoLog.logActivities("in AddOpdController-add: ");
-					ModelAndView mv= new ModelAndView();
-					mv.setViewName("failure");
-					mv.addObject("error","<b>patient is aldready added in OPD queue</b>");
-					return mv;
+					return modelAndViewUtility.returnModelAndView("failure","error","<b>patient is aldready added in OPD queue</b>");
 				}
 				else if(b==3)
 				{
 					infoLog.logActivities("in AddOpdController-add: ");
-					ModelAndView mv= new ModelAndView();
-					mv.setViewName("failure");
-					mv.addObject("error","<b>Your assigned doctor is not available...plz choose another doctor and then try again</b>");
-					return mv;
+					return modelAndViewUtility.returnModelAndView("failure","error","<b>Your assigned doctor is not available...plz choose another doctor and then try again</b>");
 				}
 				else
 				{
@@ -75,10 +70,7 @@ public class AddOpdController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in AddOpdController-add: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 			
 	}

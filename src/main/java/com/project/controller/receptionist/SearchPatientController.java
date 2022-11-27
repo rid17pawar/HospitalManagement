@@ -40,7 +40,7 @@ public class SearchPatientController
 	{
 		try {
 			infoLog.logActivities("in SearchPatientController-searchName: got= "+firstName+" "+lastName);
-			Patient p1= dao.searchName(firstName,lastName);
+			Patient p1= (Patient) dao.searchName("patient",firstName,lastName);
 			infoLog.logActivities("returned to in SearchPatientController-searchName: got= "+p1);
 			
 			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
@@ -77,7 +77,7 @@ public class SearchPatientController
 	{
 		try {
 			infoLog.logActivities("in SearchPatientController-searchId: got= "+pid);
-			Patient p1= dao.searchId(pid);
+			Patient p1= (Patient) dao.searchId("patient",pid);
 			infoLog.logActivities("returned to in SearchPatientController-searchId: got= "+p1);
 			
 			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
@@ -115,7 +115,7 @@ public class SearchPatientController
 	{
 		try {
 			infoLog.logActivities("in SearchPatientController-searchMobileNo: got= "+mobileNo);
-			Patient p1= dao.searchMobileNo(mobileNo);
+			Patient p1= (Patient) dao.searchMobileNo("patient",mobileNo);
 			infoLog.logActivities("returned to in SearchPatientController-searchMobileNo: got= "+p1);
 			
 			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
@@ -153,7 +153,7 @@ public class SearchPatientController
 	{
 		try {
 			infoLog.logActivities("in SearchPatientController-searchAdharNo: got= "+adharNo);
-			Patient p1= dao.searchAdharNo(adharNo);
+			Patient p1= (Patient)dao.searchAadharNo("patient",adharNo);
 			infoLog.logActivities("returned to in SearchPatientController-searchAdharNo: got= "+p1);
 			
 			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());

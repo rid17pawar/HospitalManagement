@@ -41,7 +41,7 @@
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-webmvc</artifactId>	
-		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
+		<version>5.3.18</version>	<!-- spring-version (must be same) -->
 	</dependency>
 	
 <!-- 	jstl= jsp standard tag line  -->
@@ -100,6 +100,13 @@
 	    <artifactId>commons-fileupload</artifactId>
 	    <version>1.4</version>
 	</dependency>
+
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <version>3.0.1</version>
+		  <scope>provided</scope>
+	  </dependency>
 	
 <!-- to encrypt password using Blowfish cipher hashing -->
 	<dependency>
@@ -126,4 +133,5 @@
 			</plugin>
 		</plugins>
 	</build>
+  
 </project>

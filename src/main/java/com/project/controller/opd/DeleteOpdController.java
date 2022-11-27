@@ -1,5 +1,6 @@
 package com.project.controller.opd;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,8 @@ public class DeleteOpdController
 	PatientPrescriptionDao dao3;
 	@Autowired
 	LoginDao infoLog;
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value = "/deleteOpd.html", method = RequestMethod.POST)
 	public ModelAndView delete(@RequestParam("pid")String pid)
@@ -47,10 +50,7 @@ public class DeleteOpdController
 			catch(Exception e)
 			{
 				infoLog.logActivities("in DeleteOpdController-delete: "+e);
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("failure");
-				mv.addObject("error",e);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("failure","error",e);
 			}
 			
 	}

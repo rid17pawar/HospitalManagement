@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +27,13 @@ public class ShowAllEmployeeDetailsController
 	EmployeeDetailsDao dao2;
 	@Autowired
 	LoginDao infoLog;
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping("/allEmployeesView.html")
 	public ModelAndView view()
 	{
-		ModelAndView mv= new ModelAndView();
-		mv.setViewName("administrator/AllEmployeeDetailsView");
-		mv.addObject("employees", dao1.getAllEmployees());
-		return mv;
+		return modelAndViewUtility.returnModelAndView("administrator/AllEmployeeDetailsView","employees", dao1.getAllEmployees());
 	}
 	
 	@RequestMapping(value = "/viewEmployee.html", method = RequestMethod.POST)
@@ -41,13 +41,10 @@ public class ShowAllEmployeeDetailsController
 	{
 		try {
 			infoLog.logActivities("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: got "+eid);
-			Employee l=(Employee) dao2.show(eid);
+			Employee l=(Employee) dao2.show("employee",eid);
 			if(! l.equals(null))
 			{
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("administrator/EmployeeDetailsView");
-				mv.addObject("employee",l);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("administrator/EmployeeDetailsView","employee",l);
 			}
 			else
 			{
@@ -57,10 +54,7 @@ public class ShowAllEmployeeDetailsController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in ShowAllEmployeeDetailsController-showEmployeeDetailsViewMethod: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	

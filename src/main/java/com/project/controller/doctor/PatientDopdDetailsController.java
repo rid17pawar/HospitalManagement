@@ -3,6 +3,7 @@ package com.project.controller.doctor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +23,16 @@ public class PatientDopdDetailsController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value="/viewDopdPatient1.html", method = RequestMethod.POST)
 	public ModelAndView view(@RequestParam("pid")String pid, HttpServletRequest request)
 	{
 		try {
 			infoLog.logActivities("in PatientDopdDetailsController-view: got="+pid);
-				Patient p1=dao.searchId(pid);
+				Patient p1=(Patient) dao.searchId("patient",pid);
 				infoLog.logActivities("returned to PatientDopdDetailsController-view: got= "+p1);
 			
 				String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
@@ -52,10 +56,7 @@ public class PatientDopdDetailsController
 			catch(Exception e)
 			{
 				infoLog.logActivities("in PatientDopdDetailsController-view: "+e);
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("failure");
-				mv.addObject("error",e);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("failure","error",e);
 			}
 	}
 	
@@ -68,7 +69,7 @@ public class PatientDopdDetailsController
 			HttpSession session=request.getSession();
 			String pid=(String)session.getAttribute("currentPatientId");
 	
-			Patient p1=dao.searchId(pid);
+			Patient p1=(Patient) dao.searchId("patient",pid);
 			infoLog.logActivities("returned to PatientDopdDetailsController-viewData: got="+p1);
 			
 			String doctorAssigned=dao.searchDoctorAssigned(p1.getDoctorId());
@@ -88,10 +89,7 @@ public class PatientDopdDetailsController
 			catch(Exception e)
 			{
 				infoLog.logActivities("in PatientDopdDetailsController-viewData: "+e);
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("failure");
-				mv.addObject("error",e);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("failure","error",e);
 			}
 	}
 	
