@@ -5,6 +5,10 @@
   <artifactId>HospitalManagement</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
+	</properties>
   <name>HospitalManagement Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
@@ -89,6 +93,13 @@
 	    <artifactId>commons-fileupload</artifactId>
 	    <version>1.4</version>
 	</dependency>
+
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <version>3.0.1</version>
+		  <scope>provided</scope>
+	  </dependency>
 	
 <!-- to encrypt password using Blowfish cipher hashing -->
 	<dependency>
@@ -100,7 +111,19 @@
 	
   </dependencies>
     
-  <build>
+ <build>
     <finalName>HospitalManagement</finalName>
+	  <plugins>
+	  <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-war-plugin</artifactId>
+		  <version>3.3.1</version>
+	  </plugin>
+	  <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-compiler-plugin</artifactId>
+		  <version>3.8.1</version>
+	  </plugin>
+	  </plugins>
   </build>
 </project>

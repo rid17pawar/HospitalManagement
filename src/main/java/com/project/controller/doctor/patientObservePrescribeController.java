@@ -3,6 +3,7 @@ package com.project.controller.doctor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.dao.opd.OpdPrescriptionDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,9 @@ public class patientObservePrescribeController
 	
 	@Autowired
 	PatientHistoryDao dao2;
+
+	@Autowired
+	OpdPrescriptionDao prescriptionDao;
 	
 	@Autowired
 	LoginDao infoLog;
@@ -51,7 +55,7 @@ public class patientObservePrescribeController
 		HttpSession session=request.getSession();
 		String pid=(String)session.getAttribute("currentPatientId");
 		int opdid=dao.add(patientcase,pid);
-		dao1.prescriptionPrint(pid);
+		prescriptionDao.prescriptionPrint(pid);
 		
 		ModelAndView mv= new ModelAndView();
 		mv.setViewName("doctor/PrescriptionPrintView");
