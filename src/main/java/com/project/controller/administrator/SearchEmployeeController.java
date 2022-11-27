@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,14 +26,14 @@ public class SearchEmployeeController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping("/searchEmployeeView.html")
 	public ModelAndView view()
 	{
-		ModelAndView mv= new ModelAndView();
-		mv.setViewName("administrator/SearchEmployeeView");
-		mv.addObject("status","true");
-		return mv;
+		return modelAndViewUtility.returnModelAndView("administrator/SearchEmployeeView","status","true");
 	}
 
 	@RequestMapping(value="/searchEmployeeByName.html", method = RequestMethod.POST)
@@ -43,18 +44,11 @@ public class SearchEmployeeController
 	    try {
 			if(e1.getEid()!=null)
 			{
-
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("administrator/EmployeeDetailsView");
-				mv.addObject("employee", e1);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("administrator/EmployeeDetailsView","employee", e1);
 			}
 	    }catch(NullPointerException e){
 	    	infoLog.logActivities("no employee found "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("administrator/SearchEmployeeView");
-			mv.addObject("status","false");
-			return mv;
+			return modelAndViewUtility.returnModelAndView("administrator/SearchEmployeeView","status","false");
 		}
 	    return null;
 	}
@@ -67,18 +61,11 @@ public class SearchEmployeeController
 	    try {
 			if(e1.getEid()!=null)
 			{
-
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("administrator/EmployeeDetailsView");
-				mv.addObject("employee", e1);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("administrator/EmployeeDetailsView","employee", e1);
 			}
 	    }catch(NullPointerException e){
 	    	infoLog.logActivities("no employee found "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("administrator/SearchEmployeeView");
-			mv.addObject("status","false");
-			return mv;
+			return modelAndViewUtility.returnModelAndView("administrator/SearchEmployeeView","status","false");
 		}
 	    return null;
 	}
@@ -91,18 +78,11 @@ public class SearchEmployeeController
 	    try {
 			if(e1.getEid()!=null)
 			{
-
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("administrator/EmployeeDetailsView");
-				mv.addObject("employee", e1);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("administrator/EmployeeDetailsView","employee", e1);
 			}
 	    }catch(NullPointerException e){
 	    	infoLog.logActivities("no employee found "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("administrator/SearchEmployeeView");
-			mv.addObject("status","false");
-			return mv;
+			return modelAndViewUtility.returnModelAndView("administrator/SearchEmployeeView","status","false");
 		}
 	    return null;
 	}
@@ -115,18 +95,11 @@ public class SearchEmployeeController
 	    try {
 			if(e1.getEid()!=null)
 			{
-
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("administrator/EmployeeDetailsView");
-				mv.addObject("employee", e1);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("administrator/EmployeeDetailsView","employee", e1);
 			}
 	    }catch(NullPointerException e){
 	    	infoLog.logActivities("no employee found "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("administrator/SearchEmployeeView");
-			mv.addObject("status","false");
-			return mv;
+			return modelAndViewUtility.returnModelAndView("administrator/SearchEmployeeView","status","false");
 		}
 	    return null;
 	}

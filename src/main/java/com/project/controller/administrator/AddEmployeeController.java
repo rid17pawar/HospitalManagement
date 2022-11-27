@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,23 +26,21 @@ public class AddEmployeeController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping("/addEmployeeView.html")
 	public ModelAndView view()
 	{
 		try
 		{
-		ModelAndView mv= new ModelAndView();
-		mv.setViewName("administrator/AddEmployeeView");
-		return mv;
+			return modelAndViewUtility.returnModelAndView("administrator/AddEmployeeView",null,null);
 		}
 		catch(Exception e)
 		{
 			infoLog.logActivities("in AddEmployeeController-view: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	
@@ -61,9 +60,7 @@ public class AddEmployeeController
 			
 			if(b)
 			{
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("successPage");
-				return mv;
+				return modelAndViewUtility.returnModelAndView("successPage",null,null);
 			}
 			else
 			{   throw new Exception();  }
@@ -71,10 +68,7 @@ public class AddEmployeeController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in AddEmployeeController-add: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	

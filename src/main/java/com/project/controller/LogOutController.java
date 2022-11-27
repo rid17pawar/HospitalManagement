@@ -3,6 +3,7 @@ package com.project.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ public class LogOutController
 {
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value="/logout.html")
 	public ModelAndView removeUserInfo(HttpServletRequest request)
@@ -25,19 +29,13 @@ public class LogOutController
 			HttpSession session= request.getSession();
 			infoLog.logActivities(session.getId());
 			session.invalidate();
-			
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("LoginView");
-			mv.addObject("status", "true");
-			return mv;
+
+			return modelAndViewUtility.returnModelAndView("LoginView","status", "true");
 		}
 		catch(Exception e)
 		{
 			infoLog.logActivities("in LogOutController-removeUserInfo: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 }

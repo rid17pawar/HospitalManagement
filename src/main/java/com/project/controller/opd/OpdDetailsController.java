@@ -2,6 +2,7 @@ package com.project.controller.opd;
 
 import java.util.ArrayList;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,9 @@ public class OpdDetailsController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value="/opdQueueView.html" )
 	public ModelAndView view()
@@ -52,10 +56,7 @@ public class OpdDetailsController
 			catch(Exception e)
 			{
 				infoLog.logActivities("in OpdDetailsController-view: "+e);
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("failure");
-				mv.addObject("error",e);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("failure","error",e);
 			}
 	}
 	

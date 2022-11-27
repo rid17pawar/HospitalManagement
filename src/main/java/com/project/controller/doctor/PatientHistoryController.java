@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,8 @@ public class PatientHistoryController
 	PatientHistoryDao dao;
 	@Autowired
 	LoginDao infoLog;
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping("/patientHistoryList.html")
 	public ModelAndView showHistoryList(HttpServletRequest request) 
@@ -40,10 +43,7 @@ public class PatientHistoryController
 			
 			if(! historyList.equals(null))
 			{
-				ModelAndView mv= new ModelAndView();
-				mv.addObject("historyList",historyList);
-				mv.setViewName("doctor/PatientHistoryListView");
-				return mv;
+				return modelAndViewUtility.returnModelAndView("doctor/PatientHistoryListView","historyList",historyList);
 			}
 			else
 			{   throw new Exception();  }
@@ -51,10 +51,7 @@ public class PatientHistoryController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in PatientHistoryController-showHistoryList: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	
@@ -71,10 +68,7 @@ public class PatientHistoryController
 			
 			if(data.getOpdid()!=0)
 			{
-				ModelAndView mv= new ModelAndView();
-				mv.addObject("history",data);
-				mv.setViewName("doctor/PatientHistoryView");
-				return mv;
+				return modelAndViewUtility.returnModelAndView("doctor/PatientHistoryView","history",data);
 			}
 			else
 			{   throw new Exception();  }
@@ -82,10 +76,7 @@ public class PatientHistoryController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in PatientHistoryController-showHistory: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 }

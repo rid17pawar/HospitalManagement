@@ -3,6 +3,7 @@ package com.project.controller.administrator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,8 @@ public class EditEmployeeController
 	EditEmployeeDao dao2;
 	@Autowired
 	LoginDao infoLog;
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping(value="/editPersonalDetailsView.html")
 	public ModelAndView editView(HttpServletRequest request)
@@ -56,21 +59,16 @@ public class EditEmployeeController
 			}
 		catch(Exception e)
 		{ 
-			infoLog.logActivities("in EditEmployeeController-editView: "+e);	
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			infoLog.logActivities("in EditEmployeeController-editView: "+e);
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 	
 	@RequestMapping(value="/editEmployeeView.html", method = RequestMethod.POST)
 	public ModelAndView view(@RequestParam("eid")String eid)
 	{
-		ModelAndView mv= new ModelAndView();
-		mv.setViewName("administrator/EditEmployeeDetailsView");
-		mv.addObject("employee", dao1.show("employee",eid));
-		return mv;
+		return modelAndViewUtility.returnModelAndView("administrator/EditEmployeeDetailsView","employee", dao1.show(eid));
+
 	}
 	
 	@RequestMapping(value="/editEmployee.html", method = RequestMethod.POST)
@@ -86,10 +84,7 @@ public class EditEmployeeController
 			
 			if(res==1)
 			{
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("successPage");
-				mv.addObject("prescriptionsCount", dao.prescriptionPrintCount());  //for receptionist only
-				return mv;
+				return modelAndViewUtility.returnModelAndView("successPage","prescriptionsCount", dao.prescriptionPrintCount());
 			}
 			else
 			{   throw new Exception();  }
@@ -97,10 +92,7 @@ public class EditEmployeeController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in EditEmployeeController-edit: "+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 }

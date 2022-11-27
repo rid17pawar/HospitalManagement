@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.project.utility.ModelAndViewUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,9 @@ public class DopdDetailsController
 	
 	@Autowired
 	LoginDao infoLog;
+
+	@Autowired
+	ModelAndViewUtility modelAndViewUtility;
 	
 	@RequestMapping("/opdQueueD.html")
 	public ModelAndView view(HttpServletRequest request)
@@ -39,10 +43,7 @@ public class DopdDetailsController
 			
 			if(! patients.equals(null))
 			{
-				ModelAndView mv= new ModelAndView();
-				mv.setViewName("doctor/DopdDetailsView");
-				mv.addObject("patientsQueue", patients);
-				return mv;
+				return modelAndViewUtility.returnModelAndView("doctor/DopdDetailsView","patientsQueue", patients);
 			}
 			else
 			{   throw new Exception();  }
@@ -50,10 +51,7 @@ public class DopdDetailsController
 		catch(Exception e)
 		{
 			infoLog.logActivities("in DopdDetailsController-view:"+e);
-			ModelAndView mv= new ModelAndView();
-			mv.setViewName("failure");
-			mv.addObject("error",e);
-			return mv;
+			return modelAndViewUtility.returnModelAndView("failure","error",e);
 		}
 	}
 }
