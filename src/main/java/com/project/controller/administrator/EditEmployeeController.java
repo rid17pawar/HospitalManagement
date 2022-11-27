@@ -43,7 +43,7 @@ public class EditEmployeeController
 			
 			String eid= l.getId();
 			
-			Employee e= dao1.show(eid);
+			Employee e= (Employee) dao1.show("employee",eid);
 			infoLog.logActivities("returned to EditEmployeeController-editView: got= "+e);
 			
 				if(! e.getEid().equals(null))
@@ -68,6 +68,7 @@ public class EditEmployeeController
 	public ModelAndView view(@RequestParam("eid")String eid)
 	{
 		return modelAndViewUtility.returnModelAndView("administrator/EditEmployeeDetailsView","employee", dao1.show(eid));
+
 	}
 	
 	@RequestMapping(value="/editEmployee.html", method = RequestMethod.POST)

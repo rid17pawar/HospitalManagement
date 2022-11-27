@@ -30,6 +30,9 @@ public class patientObservePrescribeController
 	
 	@Autowired
 	PatientHistoryDao dao2;
+
+	@Autowired
+	OpdPrescriptionDao prescriptionDao;
 	
 	@Autowired
 	LoginDao infoLog;
@@ -55,6 +58,7 @@ public class patientObservePrescribeController
 		HttpSession session=request.getSession();
 		String pid=(String)session.getAttribute("currentPatientId");
 		int opdid=dao.add(patientcase,pid);
+
 		dao1.prescriptionPrint(pid);
 
 		return modelAndViewUtility.returnModelAndView("doctor/PrescriptionPrintView","prescription", dao2.showHistory(opdid));

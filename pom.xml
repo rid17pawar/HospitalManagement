@@ -41,7 +41,7 @@
 	<dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-webmvc</artifactId>	
-		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
+		<version>5.3.18</version>	<!-- spring-version (must be same) -->
 	</dependency>
 	
 <!-- 	jstl= jsp standard tag line  -->
@@ -126,4 +126,5 @@
 			</plugin>
 		</plugins>
 	</build>
+  
 </project>

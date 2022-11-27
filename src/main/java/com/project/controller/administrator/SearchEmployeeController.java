@@ -39,7 +39,7 @@ public class SearchEmployeeController
 	@RequestMapping(value="/searchEmployeeByName.html", method = RequestMethod.POST)
 	public ModelAndView searchName(@RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName )
 	{
-		Employee e1= dao.searchName(firstName,lastName);
+		Employee e1= (Employee) dao.searchName("employee",firstName,lastName);
 		infoLog.logActivities("searchName"+e1);
 	    try {
 			if(e1.getEid()!=null)
@@ -56,7 +56,7 @@ public class SearchEmployeeController
 	@RequestMapping(value="/searchEmployeeById.html", method = RequestMethod.POST)
 	public ModelAndView searchId(@RequestParam("id")String id)
 	{
-		Employee e1= dao.searchId(id);
+		Employee e1= (Employee) dao.searchId("employee",id);
 		infoLog.logActivities(""+e1);
 	    try {
 			if(e1.getEid()!=null)
@@ -73,7 +73,7 @@ public class SearchEmployeeController
 	@RequestMapping(value="/searchEmployeeByMobileNo.html", method = RequestMethod.POST)
 	public ModelAndView searchMobileNo(@RequestParam("mobileNo")String mobileNo)
 	{
-		Employee e1= dao.searchMobileNo(mobileNo);
+		Employee e1=(Employee) dao.searchMobileNo("employee",mobileNo);
 		infoLog.logActivities(""+e1);
 	    try {
 			if(e1.getEid()!=null)
@@ -90,7 +90,7 @@ public class SearchEmployeeController
 	@RequestMapping(value="/searchEmployeeByAadharNo.html", method = RequestMethod.POST)
 	public ModelAndView searchAadharNo(@RequestParam("aadharNo")String aadharNo)
 	{
-		Employee e1= dao.searchAadharNo(aadharNo);
+		Employee e1=(Employee) dao.searchAadharNo("employee",aadharNo);
 		infoLog.logActivities(""+e1);
 	    try {
 			if(e1.getEid()!=null)
