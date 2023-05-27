@@ -31,7 +31,7 @@
 
 ## Technologies Used-
 
-![TechStack](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/techStack.png)
+![techStack](https://github.com/rid17pawar/HospitalManagement/assets/47048717/224a81c5-932a-40e5-8148-45108a74d6db)
 
 
 ### 1. Front end Technologies:
@@ -93,50 +93,50 @@
 
 1. Homepage
 
-![Homepage](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/homepg.png)
+![homepg](https://github.com/rid17pawar/HospitalManagement/assets/47048717/485e9793-c91c-4201-90ac-6d695cbf5bad)
 
 2. Login page
 
-![Login page](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/loginpg.png)
+![loginpg](https://github.com/rid17pawar/HospitalManagement/assets/47048717/c9885a70-34fc-4b68-98b1-b4f2713539bc)
 
 3. Administrator Dashboard
 
-![Administrator Dashboard](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/adminDashboard.png)
+![adminDashboard](https://github.com/rid17pawar/HospitalManagement/assets/47048717/5b0195d1-f36e-4207-92b4-5e4b4bfa35e1)
 
-![Administrator All employee view](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/adminAll.png)
+![adminAll](https://github.com/rid17pawar/HospitalManagement/assets/47048717/a079be5f-c8c9-4622-87ca-7675ea882d14)
 
 4. Doctor Dashboard
 
-![Doctor Dashboard - patient observation](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/doctorObservation.png)
+![doctorObservation](https://github.com/rid17pawar/HospitalManagement/assets/47048717/44b87bfd-9171-4302-89cd-2bf4d6e85904)
 
-![Doctor Dashboard - patient prescription](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/doctorPrescription.png)
+![doctorPrescription](https://github.com/rid17pawar/HospitalManagement/assets/47048717/6da86dae-ebd6-436b-a8af-772f484ed802)
 
 5. Receptionist Dashboard
 
-![Receptionist Dashboard search patient](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/receptionistSearch.png)
+![receptionistSearch](https://github.com/rid17pawar/HospitalManagement/assets/47048717/014d40ee-260d-407b-a464-d28ba49a285d)
 
-![Receptionist Dashboard add patient to opd](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/snapshots/receptionistAdd.png)
+![receptionistAdd](https://github.com/rid17pawar/HospitalManagement/assets/47048717/1522653b-0fcc-457c-b62e-8e012ce15d7e)
 
 ## System Diagrams
 
 1. Usecase Diagram
 
-![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Usecase%20Diagram.jpg)
+![Usecase Diagram](https://github.com/rid17pawar/HospitalManagement/assets/47048717/3c287b34-622d-4f95-9305-57e5d96847e3)
 
 2. Activity Diagram
 
-![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Activity%20Diagram.png)
+![Activity Diagram](https://github.com/rid17pawar/HospitalManagement/assets/47048717/5b90fc0d-0e30-4b7e-ae86-181898327b97)
 
 3. Class Diagram
 
-![Class Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Class%20Diagram.png)
+![Class Diagram](https://github.com/rid17pawar/HospitalManagement/assets/47048717/2c03e532-e809-4794-aad3-b7b94b1d03e9)
 
 4. Sequence Diagram
 
-![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/Sequence%20Diagram.png)
+![Sequence Diagram](https://github.com/rid17pawar/HospitalManagement/assets/47048717/c1e61536-6496-4c87-a0b9-d1e2c4ba235a)
 
 5. State Diagram
 
-![State Diagram](https://github.com/rid17pawar/HospitalManagement/blob/master/readme_images/System%20Diagrams/State%20Diagram.png)
+![State Diagram](https://github.com/rid17pawar/HospitalManagement/assets/47048717/d6db5976-a650-408d-aa38-ebf2dd301dc1)
 
 ### Thank You !
