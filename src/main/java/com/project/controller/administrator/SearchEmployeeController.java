@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class SearchEmployeeController
 		return mv;
 	}
 
-	@RequestMapping(value="/searchEmployeeByName.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchEmployeeByName.html")
 	public ModelAndView searchName(@RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName )
 	{
 		Employee e1= dao.searchName(firstName,lastName);
@@ -59,7 +60,7 @@ public class SearchEmployeeController
 	    return null;
 	}
 	
-	@RequestMapping(value="/searchEmployeeById.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchEmployeeById.html")
 	public ModelAndView searchId(@RequestParam("id")String id)
 	{
 		Employee e1= dao.searchId(id);
@@ -83,7 +84,7 @@ public class SearchEmployeeController
 	    return null;
 	}
 	
-	@RequestMapping(value="/searchEmployeeByMobileNo.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchEmployeeByMobileNo.html")
 	public ModelAndView searchMobileNo(@RequestParam("mobileNo")String mobileNo)
 	{
 		Employee e1= dao.searchMobileNo(mobileNo);
@@ -107,7 +108,7 @@ public class SearchEmployeeController
 	    return null;
 	}
 	
-	@RequestMapping(value="/searchEmployeeByAadharNo.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchEmployeeByAadharNo.html")
 	public ModelAndView searchAadharNo(@RequestParam("aadharNo")String aadharNo)
 	{
 		Employee e1= dao.searchAadharNo(aadharNo);

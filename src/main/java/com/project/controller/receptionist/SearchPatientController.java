@@ -2,6 +2,7 @@ package com.project.controller.receptionist;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class SearchPatientController
 		return mv;
 	}
 	
-	@RequestMapping(value="/searchPatientByName.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchPatientByName.html")
 	public ModelAndView searchName(@RequestParam("firstName")String firstName, @RequestParam("lastName")String lastName )
 	{
 		try {
@@ -72,7 +73,7 @@ public class SearchPatientController
 		}
 	}
 	
-	@RequestMapping(value="/searchPatientById.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchPatientById.html")
 	public ModelAndView searchId(@RequestParam("id")String pid)
 	{
 		try {
@@ -110,7 +111,7 @@ public class SearchPatientController
 		}
 	}
 
-	@RequestMapping(value="/searchPatientByMobileNo.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchPatientByMobileNo.html")
 	public ModelAndView searchMobileNo(@RequestParam("mobileNo")Long mobileNo)
 	{
 		try {
@@ -148,7 +149,7 @@ public class SearchPatientController
 		}
 	}	
 	
-	@RequestMapping(value="/searchPatientByAdharNo.html", method = RequestMethod.POST)
+	@PostMapping(value="/searchPatientByAdharNo.html")
 	public ModelAndView searchAdharNo(@RequestParam("aadharNo")Long adharNo)
 	{
 		try {

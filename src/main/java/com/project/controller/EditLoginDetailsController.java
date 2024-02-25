@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,7 +45,7 @@ public class EditLoginDetailsController
 		}
 	}
 	
-	@RequestMapping(value="/newLoginDetails.html", method = RequestMethod.POST)
+	@PostMapping(value="/newLoginDetails.html")
 	public ModelAndView editLoginView(@RequestParam("username")String username,@RequestParam("password")String password, HttpServletRequest request)
 	{
 		try {
