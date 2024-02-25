@@ -2,6 +2,7 @@ package com.project.controller.opd;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class AddOpdController
 	@Autowired
 	LoginDao infoLog;
 	
-	@RequestMapping(value = "/addOpd.html", method =RequestMethod.POST)
+	@PostMapping(value = "/addOpd.html")
 	public ModelAndView add(@RequestParam("pid")String pid)
 	{
 		try

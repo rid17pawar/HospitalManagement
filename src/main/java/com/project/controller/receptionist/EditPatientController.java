@@ -2,6 +2,7 @@ package com.project.controller.receptionist;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,7 +34,7 @@ public class EditPatientController
 	@Autowired
 	LoginDao infoLog;
 	
-	@RequestMapping(value="/editPatientView.html", method=RequestMethod.POST)
+	@PostMapping(value="/editPatientView.html")
 	public ModelAndView edit(@RequestParam("pid")String pid)
 	{
 		try {
@@ -69,7 +70,7 @@ public class EditPatientController
 				
 	}
 
-	@RequestMapping(value="/editPatient.html", method = RequestMethod.POST)
+	@PostMapping(value="/editPatient.html")
 	public ModelAndView edit(@RequestParam("pid")String pid, @RequestParam("firstName")String firstName, @RequestParam("middleName")String middleName, @RequestParam("lastName")String lastName, @RequestParam("birthdate")String birthdate, @RequestParam("gender")String gender, @RequestParam("email")String email, @RequestParam("mobileNo")Long mobileNo, @RequestParam("adharNo")Long adharNo, @RequestParam("country")String country, @RequestParam("state")String state, @RequestParam("city")String city, @RequestParam("residentialAddress")String residentialAddress, @RequestParam("permanentAddress")String permanentAddress, @RequestParam("bloodGroup")String bloodGroup, @RequestParam("chronicDiseases")String chronicDiseases, @RequestParam("medicineAllergy")String medicineAllergy, @RequestParam("doctorId")String doctorId)
 	{
 		try {

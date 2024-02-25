@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,7 +65,7 @@ public class EditEmployeeController
 		}
 	}
 	
-	@RequestMapping(value="/editEmployeeView.html", method = RequestMethod.POST)
+	@PostMapping(value="/editEmployeeView.html")
 	public ModelAndView view(@RequestParam("eid")String eid)
 	{
 		ModelAndView mv= new ModelAndView();
@@ -73,7 +74,7 @@ public class EditEmployeeController
 		return mv;
 	}
 	
-	@RequestMapping(value="/editEmployee.html", method = RequestMethod.POST)
+	@PostMapping(value="/editEmployee.html")
 	public ModelAndView edit(@RequestParam("eid")String eid, @RequestParam("firstName")String firstName, @RequestParam("middleName")String middleName, @RequestParam("lastName")String lastName, @RequestParam("birthdate")String birthdate, @RequestParam("gender")String gender, @RequestParam("email")String email, @RequestParam("mobileNo")Long mobileNo, @RequestParam("adharNo")Long adharNo, @RequestParam("country")String country, @RequestParam("state")String state, @RequestParam("city")String city, @RequestParam("residentialAddress")String residentialAddress, @RequestParam("permanentAddress")String permanentAddress, @RequestParam("role")String role, @RequestParam("qualification")String qualification, @RequestParam("specialization")String specialization)
 	{
 		try {

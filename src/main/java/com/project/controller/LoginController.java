@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,7 +27,7 @@ public class LoginController
 	@Autowired
 	UsersInSystemDao dao2;
 	 
-	@RequestMapping(value="/login.html", method = RequestMethod.POST)
+	@PostMapping(value="/login.html")
 	public ModelAndView view()
 	{
 		try
@@ -47,7 +48,7 @@ public class LoginController
 	}
 	
 	
-	@RequestMapping(value="/dashboard.html", method = RequestMethod.POST)
+	@PostMapping(value="/dashboard.html")
 	public ModelAndView validate(@RequestParam("role")String role, @RequestParam("username")String username, @RequestParam("password")String password, HttpServletRequest request ) 
 	{
 		try {

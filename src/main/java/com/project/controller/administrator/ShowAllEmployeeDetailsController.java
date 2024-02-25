@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,7 @@ public class ShowAllEmployeeDetailsController
 		return mv;
 	}
 	
-	@RequestMapping(value = "/viewEmployee.html", method = RequestMethod.POST)
+	@PostMapping(value = "/viewEmployee.html")
 	public ModelAndView showEmployeeDetailsViewMethod(@RequestParam("eid")String eid)
 	{
 		try {
