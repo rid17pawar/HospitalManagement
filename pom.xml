@@ -8,13 +8,10 @@
   <name>HospitalManagement Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
-  <!--  
-   ***** pom stands for Project Object Model *****
-  -->
-  
-  <!--  <properties>
-  		<spring.version>4.1.8.RELEASE</spring.version>	//5.2.0.RELEASE
-  </properties> -->
+  <!-- Define properties -->
+  <properties>
+    <spring.version>5.2.1.RELEASE</spring.version>
+  </properties>
   
   <dependencies>
     <dependency>
@@ -24,80 +21,80 @@
       <scope>test</scope>
     </dependency>
   	
-  	<!-- <version>4.1.8.RELEASE</version> -->
-  	
-<!--     spring core -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-context</artifactId> 
-		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
-	</dependency>
+  	<!-- Spring dependencies -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
 	
-<!-- 	spring mvc -->
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>	
-		<version>5.3.18</version>	<!-- spring-version (must be same) -->
-	</dependency>
+    <!-- JSTL -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>  
+      <version>1.2</version>
+    </dependency>
 	
-<!-- 	jstl= jsp standard tag line  -->
-	<dependency>
-		<groupId>javax.servlet</groupId>
-		<artifactId>jstl</artifactId>  
-		<version>1.2</version>
-	</dependency>
+    <!-- Hibernate -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.4.8.Final</version>
+    </dependency>
 	
-<!-- 	hibernate core -->
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-core</artifactId>
-	    <version>5.4.8.Final</version>
-   </dependency>
-   	
-<!--    	to use spring and hibernate together	 -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-orm</artifactId>		
-		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->	
-	</dependency>
+    <!-- Spring ORM -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>		
+      <version>${spring.version}</version>
+    </dependency>
    
-<!--    mysql DB connector -->
-	<dependency>
-	    <groupId>mysql</groupId>
-	    <artifactId>mysql-connector-java</artifactId>
-	    <version>8.0.17</version>
-	</dependency>
+    <!-- MySQL Connector -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.17</version>
+    </dependency>
 	
-<!-- 	jdbc pooling -->
-	<dependency>
-	    <groupId>com.mchange</groupId>
-	    <artifactId>c3p0</artifactId>
-	    <version>0.9.5.4</version>
-	</dependency>
+    <!-- JDBC Pooling -->
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>c3p0</artifactId>
+      <version>0.9.5.4</version>
+    </dependency>
 	
-<!-- 	to tell spring do commit and rollback using annotations -->
-	<dependency>
-	    <groupId>org.springframework</groupId>
-	    <artifactId>spring-tx</artifactId>
-		<version>4.3.2.RELEASE</version>	<!-- spring-version (must be same) -->
-	</dependency> 
+    <!-- Spring Transaction -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency> 
 	
-<!-- to store and read image file -->
-    <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-	<dependency>
-	    <groupId>commons-fileupload</groupId>
-	    <artifactId>commons-fileupload</artifactId>
-	    <version>1.5</version>
-	</dependency>
+    <!-- Commons FileUpload -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.5</version>
+    </dependency>
 	
-<!-- to encrypt password using Blowfish cipher hashing -->
-	<dependency>
-	    <groupId>org.mindrot</groupId>
-	    <artifactId>jbcrypt</artifactId>
-	    <version>0.3m</version>
-	</dependency>
-	
-	
+    <!-- jBCrypt -->
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.3m</version>
+    </dependency>
+
+    <!-- Spring Core -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
   </dependencies>
     
   <build>
