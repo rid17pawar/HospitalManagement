@@ -21,6 +21,15 @@
 	http://www.springframework.org/schema/tx/spring-tx.xsd"
 	
 	>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/login.html" />
+			<mvc:exclude-mapping path="/dashboard.html" />
+			<bean class="com.project.interceptor.AuthorizationInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
 	<ctx:annotation-config />
 	<ctx:component-scan base-package="com.project"></ctx:component-scan>
 	 
